@@ -2,9 +2,37 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petz_care/widget/card.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   static const String id = 'Main_Screen';
   const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+
+  final _auth = FirebaseAuth.instance;
+  late User _activeUser;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    try {
+      var currentUser = await _auth.currentUser;
+
+      if (currentUser != null) {
+        _activeUser = currentUser;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +80,7 @@ class MainScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      'Jake jksdjsd',
+                                      _activeUser.email.toString(),
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
