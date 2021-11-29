@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petz_care/widget/card.dart';
 
 class MainScreen extends StatelessWidget {
+  static const String id = 'Main_Screen';
   const MainScreen({Key? key}) : super(key: key);
 
   @override
