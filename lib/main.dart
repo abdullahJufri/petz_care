@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:petz_care/ui/login_page.dart';
+import 'package:petz_care/ui/login_test.dart';
+// import 'package:petz_care/ui/login_page.dart';
 import 'package:petz_care/ui/main_screen.dart';
+import 'package:petz_care/ui/profile_page.dart';
+import 'package:petz_care/ui/regist_test.dart';
 import 'package:petz_care/ui/register_page.dart';
 
 
@@ -26,8 +29,11 @@ class MyApp extends StatelessWidget {
       initialRoute: LoginPage.id,
       routes: {
         LoginPage.id: (context) => LoginPage(),
+        RegistrationPage.id: (context) => RegisterPage(),
         RegisterPage.id: (context) => RegisterPage(),
         MainScreen.id: (context) => MainScreen(),
+        MyProfile.id: (context) => MyProfile()
+
       },
       // home: const MainScreen(),
     );
