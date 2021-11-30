@@ -1,15 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:petz_care/tes_provider.dart';
 import 'package:petz_care/ui/model_test.dart';
 import 'package:petz_care/ui/profile_page.dart';
 import 'package:petz_care/widget/card.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = 'Main_Screen';
-  // final TextEditingController emailPegawaiCont = new TextEditingController();
-  // String? emailPegawai,
+
   const MainScreen({Key? key}) : super(key: key);
 
   @override
@@ -17,10 +15,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final _auth = FirebaseAuth.instance;
-  final _firestore = FirebaseFirestore.instance;
-  final _messageTextController = TextEditingController();
-
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
@@ -36,57 +30,6 @@ class _MainScreenState extends State<MainScreen> {
       setState(() {});
     });
   }
-
-  // late User _activeUser;
-  // final EmailPegawaiField = TextFormField(
-  //   autofocus: false,
-  //   controller: emailPegawaiCont,
-  //   keyboardType: TextInputType.name,
-  //   validator: (value) {
-  //     if (value!.isEmpty) {
-  //       return ("Please Enter Your Email");
-  //     }
-  //
-  //     //req expression for email  validation
-  //     if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-  //       return ("Please Enter a valid email");
-  //     }
-  //     return null;
-  //   },
-  //   onChanged: (String email) {
-  //     getEmployeeEmail(email);
-  //   },
-  //   textInputAction: TextInputAction.next,
-  //   decoration: InputDecoration(
-  //     contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-  //     hintText: " Email Pegawai",
-  //     border: OutlineInputBorder(
-  //       borderRadius: BorderRadius.circular(10),
-  //     ),
-  //   ),
-  // );
-
-  //
-  // @override
-  // void initState() {
-  //   getCurrentUser();
-  //   super.initState();
-  //
-  // }
-
-
-  // void getCurrentUser() async {
-  //   try {
-  //     var currentUser = await _auth.currentUser;
-  //
-  //     if (currentUser != null) {
-  //       _activeUser = currentUser;
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
 
   @override
   Widget build(BuildContext context) {
@@ -116,10 +59,10 @@ class _MainScreenState extends State<MainScreen> {
                                   width: 48.0,
                                   decoration: BoxDecoration(
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(12)),
+                                        BorderRadius.all(Radius.circular(12)),
                                     image: DecorationImage(
-                                      image: AssetImage(
-                                          'images/boy_person.png'),
+                                      image:
+                                          AssetImage('images/boy_person.png'),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -127,8 +70,8 @@ class _MainScreenState extends State<MainScreen> {
                                 Container(
                                   margin: EdgeInsets.only(left: 14),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Hello,',
@@ -137,27 +80,8 @@ class _MainScreenState extends State<MainScreen> {
                                           fontSize: 16,
                                         ),
                                       ),
-                                      // StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                                      //   //   stream: _firestore
-                                      //   // future: TestProvider.getTestSpaces(),
-                                      //   builder: (context, tes) {
-                                      //     if(tes.hasData){
-                                      //       return  Text(
-                                      //         tes,
-                                      //         style: TextStyle(
-                                      //           color: Colors.white,
-                                      //           fontSize: 18,
-                                      //         ),
-                                      //       );
-                                      //     } else {
-                                      //       return CircularProgressIndicator();
-                                      //     }
-                                      //
-                                      //   },
-                                      //
-                                      // )
                                       Text(
-                                        '${loggedInUser.email}',
+                                        '${loggedInUser.firstName} ${loggedInUser.secondName}',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -205,19 +129,19 @@ class _MainScreenState extends State<MainScreen> {
                           Navigator.pushNamed(context, MyProfile.id);
                         },
                         child:
-                        Card_menu(title: 'My Profile', icon: Icons.person)),
+                            Card_menu(title: 'My Profile', icon: Icons.person)),
                     InkWell(
                         onTap: () {},
                         child: Card_menu(
                             title: 'Booking', icon: Icons.calendar_today)),
                     InkWell(
                         onTap: () {},
-                        child:
-                        Card_menu(title: 'Cart', icon: Icons.shopping_cart)),
+                        child: Card_menu(
+                            title: 'Cart', icon: Icons.shopping_cart)),
                     InkWell(
                         onTap: () {},
-                        child: Card_menu(
-                            title: 'History', icon: Icons.history)),
+                        child:
+                            Card_menu(title: 'History', icon: Icons.history)),
                   ],
                 ),
               )
