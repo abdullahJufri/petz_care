@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:petz_care/ui/model_test.dart';
 
 class MyProfile extends StatefulWidget {
   static const String id = 'My_profile';
@@ -12,6 +14,22 @@ class MyProfile extends StatefulWidget {
 class _MyProfileState extends State<MyProfile> {
   var nameController = TextEditingController();
   var addressController = TextEditingController();
+
+  User? user = FirebaseAuth.instance.currentUser;
+  UserModel loggedInUser = UserModel();
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("user")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      this.loggedInUser = UserModel.fromMap(value.data());
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,10 +99,10 @@ class _MyProfileState extends State<MyProfile> {
               Column(
                 children: [
                   Text(
-                    'Joy wkdwddwfk',
+                    '${loggedInUser.firstName} ${loggedInUser.secondName}',
                   ),
                   Text(
-                    'email',
+                    '${loggedInUser.email}',
                   ),
                 ],
               ),

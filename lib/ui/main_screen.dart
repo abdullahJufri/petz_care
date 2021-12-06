@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:petz_care/ui/booking_screen.dart';
 import 'package:petz_care/ui/model_test.dart';
 import 'package:petz_care/ui/profile_page.dart';
 import 'package:petz_care/widget/card.dart';
@@ -131,7 +132,9 @@ class _MainScreenState extends State<MainScreen> {
                         child:
                             Card_menu(title: 'My Profile', icon: Icons.person)),
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, BookingScreen.id);
+                        },
                         child: Card_menu(
                             title: 'Booking', icon: Icons.calendar_today)),
                     InkWell(
