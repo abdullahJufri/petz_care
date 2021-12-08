@@ -1,0 +1,65 @@
+// To parse this JSON data, do
+//
+//     final clinics = clinicsFromJson(jsonString);
+
+import 'dart:convert';
+
+Clinics clinicsFromJson(String str) => Clinics.fromJson(json.decode(str));
+
+String clinicsToJson(Clinics data) => json.encode(data.toJson());
+
+class Clinics {
+  Clinics({
+    required this.clinics,
+  });
+
+  List<Clinic> clinics;
+
+  factory Clinics.fromJson(Map<String, dynamic> json) => Clinics(
+    clinics: List<Clinic>.from(json["clinics"].map((x) => Clinic.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "clinics": List<dynamic>.from(clinics.map((x) => x.toJson())),
+  };
+}
+
+class Clinic {
+  Clinic({
+    required this.id,
+    required this.name,
+    required this.address,
+    required this.pictureId,
+    required this.city,
+    required this.telp,
+    required this.rating,
+  });
+
+  String id;
+  String name;
+  String address;
+  String pictureId;
+  String city;
+  String telp;
+  double rating;
+
+  factory Clinic.fromJson(Map<String, dynamic> json) => Clinic(
+    id: json["id"],
+    name: json["name"],
+    address: json["address"],
+    pictureId: json["pictureId"],
+    city: json["city"],
+    telp: json["telp"],
+    rating: json["rating"].toDouble(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "address": address,
+    "pictureId": pictureId,
+    "city": city,
+    "telp": telp,
+    "rating": rating,
+  };
+}

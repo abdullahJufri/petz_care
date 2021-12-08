@@ -1,0 +1,61 @@
+{
+  "clinics": [
+    {
+      "id": "rqdv5juczeskfw1e867",
+      "name": "Gloriouz Pet",
+      "address": "Jl. Letjen Soeprapto No.60",
+      "pictureId": "https://assets.petpintar.com/cache/0/400/place/700/700-dokter-hewan-gloriouz-pet-4.jpeg",
+      "city": "jakarta",
+      "telp": "0878-4288-6262",
+      "rating": 4.6
+
+    },
+    {
+      "id": "rqdv5juczeskfw1e234",
+      "name": "Pet Vet",
+      "address": "Jl. K.H. Mas Mansyur No.8A",
+      "pictureId": "https://static.wixstatic.com/media/34c1e6_6bb2f70ec1f741fead5a2345fe1218e6~mv2.jpg/v1/crop/x_0,y_31,w_1109,h_534/fill/w_560,h_266,al_c,q_80,usm_0.66_1.00_0.01/Petvet.webp",
+      "city": "jakarta",
+      "telp": "0857-7777-2900",
+      "rating": 4.6
+    },
+    {
+      "id": "rqdv5juczeskfw1e867",
+      "name": "Gloriouz Pet",
+      "address": "Jl. Letjen Soeprapto No.60",
+      "pictureId": "https://restaurant-api.dicoding.dev/images/medium/14",
+      "city": "jakarta",
+      "telp": "0878-4288-6262",
+      "rating": 4.6
+
+    },
+    {
+      "id": "rqdv5juczeskfw1e234",
+      "name": "Pet Vet",
+      "address": "Jl. K.H. Mas Mansyur No.8A",
+      "pictureId": "https://restaurant-api.dicoding.dev/images/medium/14",
+      "city": "jakarta",
+      "telp": "0857-7777-2900",
+      "rating": 4.6
+    },
+    {
+      "id": "rqdv5juczeskfw1e867",
+      "name": "Gloriouz Pet",
+      "address": "Jl. Letjen Soeprapto No.60",
+      "pictureId": "https://restaurant-api.dicoding.dev/images/medium/14",
+      "city": "jakarta",
+      "telp": "0878-4288-6262",
+      "rating": 4.6
+
+    },
+    {
+      "id": "rqdv5juczeskfw1e234",
+      "name": "Pet Vet",
+      "address": "Jl. K.H. Mas Mansyur No.8A",
+      "pictureId": "https://restaurant-api.dicoding.dev/images/medium/14",
+      "city": "jakarta",
+      "telp": "0857-7777-2900",
+      "rating": 4.6
+    }
+  ]
+}

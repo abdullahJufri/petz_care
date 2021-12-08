@@ -1,9 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:im_stepper/stepper.dart';
 import 'package:petz_care/firestore/all_clinic_ref.dart';
 import 'package:petz_care/model/city_model.dart';
 import 'package:petz_care/state_management.dart';
@@ -62,22 +58,23 @@ class _BookingScreenState extends State<BookingScreen> {
                 child: Text('Cannot load City'),
               );
             else
-              return GestureDetector(
-                  onTap: null,
-                  child: ListView.builder(
-                      itemCount: cities.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          child: ListTile(
-                            leading: Icon(Icons.home_work),
-                            // trailing: context.read(selecetedCity).state ==
-                            //         cities[index].name
-                            //     ? Icon(Icons.check)
-                            //     : null,
-                            title: Text('${cities[index].name}'),
-                          ),
-                        );
-                      }));
+              return ListView.builder(
+                  itemCount: cities.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      // onTap: ()=> context.read(selectedCity).state = cities[index].name,
+                      child: Card(
+                        child: ListTile(
+                          leading: Icon(Icons.home_work),
+                          // trailing: context.read(selectedCity).state ==
+                          //         cities[index].name
+                          //     ? Icon(Icons.check)
+                          //     : null,
+                          title: Text('${cities[index].name}'),
+                        ),
+                      ),
+                    );
+                  });
           }
         });
   }
