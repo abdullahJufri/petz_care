@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:petz_care/theme.dart';
 import 'package:petz_care/ui/home_page.dart';
+import 'package:petz_care/ui/profile_page.dart';
 import 'package:petz_care/widget/platform_widget.dart';
-import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   static const routeName = '/main_screen';
@@ -19,11 +19,10 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _bottomNavIndex = 0;
 
-
   final List<Widget> _listWidget = [
     HomePage(),
     HomePage(),
-    HomePage(),
+    const MyProfile(),
   ];
 
   void _onBottomNavTapped(int index) {
@@ -42,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
       size: 30,
     ),
     const Icon(
-      Icons.settings_rounded,
+      Icons.person,
       size: 30,
     ),
   ];

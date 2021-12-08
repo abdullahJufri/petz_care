@@ -9,7 +9,9 @@ class SpaceCard extends StatelessWidget {
   SpaceCard(this.clinic);
 
   @override
-  Widget build(BuildContext context,) {
+  Widget build(
+    BuildContext context,
+  ) {
     return InkWell(
       onTap: () {
         // Navigator.push(
@@ -26,8 +28,8 @@ class SpaceCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(18),
               child: Container(
-                width: 130,
-                height: 110,
+                width: 110,
+                height: 105,
                 child: Stack(
                   children: [
                     Image.network(
@@ -57,7 +59,7 @@ class SpaceCard extends StatelessWidget {
                               height: 22,
                             ),
                             Text(
-                              '${clinic.rating}/5',
+                              '${clinic.rating}/5.0',
                               style: whiteTextStyle.copyWith(
                                 fontSize: 13,
                               ),
@@ -79,7 +81,7 @@ class SpaceCard extends StatelessWidget {
                 Text(
                   clinic.name,
                   style: blackTextStyle.copyWith(
-                    fontSize: 18,
+                    fontSize: 17,
                   ),
                 ),
                 SizedBox(
@@ -96,9 +98,18 @@ class SpaceCard extends StatelessWidget {
                 SizedBox(
                   height: 16,
                 ),
-                Text(
-                  '${clinic.city}',
-                  style: greyTextStyle,
+                Row(
+                  children: [
+                    Icon(
+                      Icons.room,
+                      color: Colors.red,
+                      size: 18,
+                    ),
+                    Text(
+                      '${clinic.city}',
+                      style: greyTextStyle,
+                    ),
+                  ],
                 ),
               ],
             ),

@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {});
     });
   }
+
   @override
   Widget build(BuildContext context) {
     // var spaceProvider = Provider.of<SpaceProvider>(context);
@@ -81,7 +82,7 @@ class _HomePageState extends State<HomePage> {
               height: 16,
             ),
             Container(
-              height: 150,
+              height: 125,
               // child: ListView(
               //   scrollDirection: Axis.horizontal,
               //   children: [
@@ -154,7 +155,7 @@ class _HomePageState extends State<HomePage> {
               // ),
             ),
             SizedBox(
-              height: 30,
+              height: 25,
             ),
             // NOTE: RECOMMENDED SPACE
             Padding(
@@ -171,7 +172,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               // height: 300,
-              height: MediaQuery.of(context).size.height /2,
+              height: MediaQuery.of(context).size.height / 3,
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: edge,
@@ -186,8 +187,7 @@ class _HomePageState extends State<HomePage> {
                         return ListView.builder(
                           itemCount: clinics.length,
                           itemBuilder: (context, index) {
-                            return SpaceCard(
-                                clinics[index]);
+                            return SpaceCard(clinics[index]);
                           },
                         );
                       } else {
@@ -198,7 +198,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
             SizedBox(
-              height: 30,
+              height: 15,
             ),
             // NOTE: TIPS & GUIDANCE
             Padding(
@@ -282,7 +282,4 @@ class _HomePageState extends State<HomePage> {
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
-
-
-
 }

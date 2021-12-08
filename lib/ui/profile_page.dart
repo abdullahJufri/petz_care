@@ -34,7 +34,7 @@ class _MyProfileState extends State<MyProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -50,7 +50,7 @@ class _MyProfileState extends State<MyProfile> {
                       },
                       icon: Icon(
                         Icons.arrow_back,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                     Text(
@@ -58,11 +58,11 @@ class _MyProfileState extends State<MyProfile> {
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: Colors.black),
                     ),
                     Icon(
                       Icons.segment_sharp,
-                      color: Colors.white,
+                      color: Colors.black,
                     )
                   ],
                 ),
@@ -75,13 +75,13 @@ class _MyProfileState extends State<MyProfile> {
                 height: 200,
                 decoration: BoxDecoration(
                   color: const Color(0xff7c94b6),
-                  image: DecorationImage(
-                    image: AssetImage('images/boy_person.png'),
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/boy_person.png'),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(100.0)),
                   border: Border.all(
-                    color: Colors.white,
+                    color: Colors.black,
                     width: 4.0,
                   ),
                   boxShadow: [
@@ -100,26 +100,13 @@ class _MyProfileState extends State<MyProfile> {
                 children: [
                   Text(
                     '${loggedInUser.firstName} ${loggedInUser.secondName}',
+                    style: TextStyle(fontSize: 16),
                   ),
-                  Text(
-                    '${loggedInUser.email}',
-                  ),
+                  Text('${loggedInUser.email}', style: TextStyle(fontSize: 16)),
                 ],
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  margin: EdgeInsets.only(top: 20, bottom: 10),
-                  child: Divider(
-                    color: Colors.white,
-                    thickness: 4,
-                    indent: 5,
-                    endIndent: 5,
-                  ),
-                ),
-              ),
               SizedBox(
-                height: 10,
+                height: 5,
               ),
               Container(
                 margin: EdgeInsets.symmetric(
@@ -127,6 +114,18 @@ class _MyProfileState extends State<MyProfile> {
                 ),
                 child: Column(
                   children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        margin: EdgeInsets.only(top: 20, bottom: 10),
+                        child: Divider(
+                          color: Colors.black,
+                          thickness: 4,
+                          indent: 5,
+                          endIndent: 5,
+                        ),
+                      ),
+                    ),
                     ProfileWidget(
                       text: 'Edit Profile',
                       icon: Icons.settings,
@@ -157,7 +156,7 @@ class _MyProfileState extends State<MyProfile> {
                       child: Container(
                         margin: EdgeInsets.only(top: 20, bottom: 10),
                         child: Divider(
-                          color: Colors.white,
+                          color: Colors.black,
                           thickness: 4,
                           indent: 5,
                           endIndent: 5,
@@ -223,9 +222,9 @@ class ProfileWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Icon(icon, color: Colors.white),
+        Icon(icon, color: Colors.black),
         Text(text),
-        Icon(Icons.keyboard_arrow_right, color: Colors.white),
+        Icon(Icons.keyboard_arrow_right, color: Colors.black),
       ],
     );
   }
