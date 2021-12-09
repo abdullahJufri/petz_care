@@ -1,211 +1,250 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:petz_care/firestore/clinic_all_ref.dart';
 import 'package:petz_care/model/clinic.dart';
+import 'package:petz_care/model/clinic_model.dart';
 import 'package:petz_care/theme.dart';
 
-class DetailPage extends StatelessWidget {
-  final Clinic clinic;
-  const DetailPage({Key? key, required this.clinic}) : super(key: key);
+class DetailPage extends StatefulWidget {
+  // final String clinic;
+  String value;
+  DetailPage({required this.value});
+
+
+  // final Clinic clinic;
+  // const DetailPage({Key? key, required this.clinic,}) : super(key: key);
+  static const String id = 'detail_page';
 
   @override
+  State<DetailPage> createState() => _DetailPageState(value);
+}
+
+class _DetailPageState extends State<DetailPage> {
+  String value;
+
+  _DetailPageState(this.value);
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Stack(
-          children: [
-            Image.network(
-              clinic.pictureId,
-              width: MediaQuery.of(context).size.width,
-              height: 350,
-              fit: BoxFit.cover,
-            ),
-            ListView(
-              children: [
-                SizedBox(
-                  height: 328,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(20),
-                    ),
-                    color: whiteColor,
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: Text(
-                                clinic.name,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
+    return FutureBuilder(
+        future: getClinics(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          else {
+            var clinic = snapshot.data as List<ClinicModel>;
+            if (clinic == null || clinic.length == 0)
+              return Center(
+                child: Text('Cannot load Clinic'),
+              );
+            else
+              return ListView.builder(
+                itemCount: clinic.length,
+                itemBuilder: (context, index) {
+                  return Scaffold(
+                    body: SafeArea(
+                      bottom: false,
+                      child: Stack(
+                        children: [
+                          Image.network(
+                            clinic[index].pictureId,
+                            width: MediaQuery.of(context).size.width,
+                            height: 350,
+                            fit: BoxFit.cover,
+                          ),
+                          ListView(
+                            children: [
+                              SizedBox(
+                                height: 328,
                               ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(
-                                  Icons.room,
-                                  color: Colors.red,
-                                  size: 18,
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20),
+                                  ),
+                                  color: whiteColor,
                                 ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Expanded(
-                                    child: Text(
-                                  clinic.city,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                )),
-                                Row(
+                                child: Column(
                                   children: [
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.orange,
-                                      size: 18,
+                                    SizedBox(
+                                      height: 15,
                                     ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.orange,
-                                      size: 18,
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Center(
+                                            child: Text(
+                                              '${clinic[index].name}',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold, fontSize: 20),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Icon(
+                                                Icons.room,
+                                                color: Colors.red,
+                                                size: 18,
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Expanded(
+                                                  child: Text(
+                                                    '${clinic[index].name}',
+                                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                                  )),
+                                              Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Colors.orange,
+                                                    size: 18,
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Colors.orange,
+                                                    size: 18,
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Colors.orange,
+                                                    size: 18,
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Colors.orange,
+                                                    size: 18,
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Colors.grey,
+                                                    size: 18,
+                                                  ),
+                                                  SizedBox(width: 5),
+                                                  Text('${clinic[index].name}'),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(height: 20),
+                                          Text(
+                                            'Location : ',
+                                            style: TextStyle(fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            '${clinic[index].name}',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(),
+                                          ),
+                                          SizedBox(height: 20),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Text(
+                                                'Service : ',
+                                                style: TextStyle(fontWeight: FontWeight.bold),
+                                              ),
+                                              SizedBox(width: 8),
+                                              Text(
+                                                'Price : ',
+                                                style: TextStyle(fontWeight: FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Text('${clinic[index].name}'),
+                                              SizedBox(width: 10),
+                                              Text('${clinic[index].name}'),
+                                            ],
+                                          ),
+                                          SizedBox(height: 20),
+                                          Text(
+                                            'Opening Hours : ',
+                                            style: TextStyle(fontWeight: FontWeight.bold),
+                                          ),
+                                          Text('${clinic[index].name}'),
+                                          SizedBox(height: 20),
+                                          Text(
+                                            'Number Phone : ',
+                                            style: TextStyle(fontWeight: FontWeight.bold),
+                                          ),
+                                          Text('${clinic[index].name}'),
+                                          SizedBox(height: 20),
+                                          Container(
+                                            margin: EdgeInsets.symmetric(
+                                              horizontal: 27,
+                                            ),
+                                            height: 50,
+                                            width:
+                                            MediaQuery.of(context).size.width - (2 * 5),
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(20),
+                                                  ),
+                                                ),
+                                                onPressed: () {},
+                                                child: Text('Book Now')),
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.orange,
-                                      size: 18,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.orange,
-                                      size: 18,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.grey,
-                                      size: 18,
-                                    ),
-                                    SizedBox(width: 5),
-                                    Text(clinic.rating.toString()),
                                   ],
                                 ),
-                              ],
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              'Location : ',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              clinic.fullAddress,
-                              textAlign: TextAlign.justify,
-                              style: TextStyle(),
-                            ),
-                            SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'Service : ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(width: 8),
-                                Text(
-                                  'Price : ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(clinic.service),
-                                SizedBox(width: 10),
-                                Text(clinic.price),
-                              ],
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              'Opening Hours : ',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Text(clinic.workingHours),
-                            SizedBox(height: 20),
-                            Text(
-                              'Number Phone : ',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Text(clinic.telp),
-                            SizedBox(height: 20),
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                horizontal: 27,
                               ),
-                              height: 50,
-                              width:
-                                  MediaQuery.of(context).size.width - (2 * 5),
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_back,
+                                      color: Colors.black,
                                     ),
                                   ),
-                                  onPressed: () {},
-                                  child: Text('Book Now')),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.black,
+                                ),
+                                CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.favorite_border,
+                                      color: Colors.black,
+                                    ),
+                                    onPressed: () {
+                                      // Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.favorite_border,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        // Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+                  );
+                },
+              );
+          }
+        });
+
   }
 }

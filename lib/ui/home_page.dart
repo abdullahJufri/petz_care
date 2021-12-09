@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:petz_care/firestore/clinic_all_ref.dart';
 import 'package:petz_care/model/clinic.dart';
+import 'package:petz_care/model/clinic_model.dart';
 import 'package:petz_care/theme.dart';
+import 'package:petz_care/ui/detail_page.dart';
 import 'package:petz_care/ui/model_test.dart';
 import 'package:petz_care/widget/space_card.dart';
 
@@ -28,7 +31,8 @@ class _HomePageState extends State<HomePage> {
       this.loggedInUser = UserModel.fromMap(value.data());
       setState(() {});
     });
-  }
+    }
+
 
   @override
   Widget build(BuildContext context) {
@@ -177,109 +181,19 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.symmetric(
                   horizontal: edge,
                 ),
-                child: FutureBuilder<String>(
-                    future: DefaultAssetBundle.of(context)
-                        .loadString('assets/clinic.json'),
-                    builder: (context, snapshot) {
-                      if (snapshot.data != null) {
-                        final List<Clinic> clinics =
-                            clinicsFromJson(snapshot.data!).clinics;
-                        return ListView.builder(
-                          itemCount: clinics.length,
-                          itemBuilder: (context, index) {
-                            return SpaceCard(clinics[index]);
-                          },
-                        );
-                      } else {
-                        return CircularProgressIndicator();
-                      }
-                    }),
+                child: SpaceCard()
               ),
             ),
+
 
             SizedBox(
               height: 15,
             ),
-            // NOTE: TIPS & GUIDANCE
-            Padding(
-              padding: EdgeInsets.only(left: edge),
-              child: Text(
-                'Tips & Guidance',
-                style: regularTextStyle.copyWith(
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: edge,
-              ),
-              // child: Column(
-              //   children: [
-              //     TipsCard(
-              //       Tips(
-              //         id: 1,
-              //         title: 'City Guidelines',
-              //         imageUrl: 'assets/tips1.png',
-              //         updatedAt: '20 Apr',
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       height: 20,
-              //     ),
-              //     TipsCard(
-              //       Tips(
-              //         id: 2,
-              //         title: 'Jakarta Fairship',
-              //         imageUrl: 'assets/tips2.png',
-              //         updatedAt: '11 Dec',
-              //       ),
-              //     ),
-              //   ],
-              // ),
-            ),
-            SizedBox(
-              height: 100 + edge,
-            ),
+
           ],
         ),
       ),
-      // floatingActionButton: Container(
-      //   height: 65,
-      //   width: MediaQuery.of(context).size.width - (2 * edge),
-      //   margin: EdgeInsets.symmetric(
-      //     horizontal: edge,
-      //   ),
-      //   decoration: BoxDecoration(
-      //     color: Color(0xffF6F7F8),
-      //     borderRadius: BorderRadius.circular(23),
-      //   ),
-      //   // child: Row(
-      //   //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //   //   children: [
-      //   //     BottomNavbarItem(
-      //   //       imageUrl: 'assets/icon_home.png',
-      //   //       isActive: true,
-      //   //     ),
-      //   //     BottomNavbarItem(
-      //   //       imageUrl: 'assets/icon_email.png',
-      //   //       isActive: false,
-      //   //     ),
-      //   //     BottomNavbarItem(
-      //   //       imageUrl: 'assets/icon_card.png',
-      //   //       isActive: false,
-      //   //     ),
-      //   //     BottomNavbarItem(
-      //   //       imageUrl: 'assets/icon_love.png',
-      //   //       isActive: false,
-      //   //     ),
-      //   //   ],
-      //   // ),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
     );
   }
 }
