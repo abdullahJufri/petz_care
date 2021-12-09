@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petz_care/model/clinic.dart';
+import 'package:petz_care/ui/detail_page.dart';
 
 import '../theme.dart';
 
@@ -14,12 +15,12 @@ class SpaceCard extends StatelessWidget {
   ) {
     return InkWell(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => DetailPage(clinic),
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailPage(clinic: clinic),
+          ),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
