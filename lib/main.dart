@@ -7,7 +7,7 @@ import 'package:petz_care/ui/login_page.dart';
 import 'package:petz_care/ui/main_screen.dart';
 import 'package:petz_care/ui/profile_page.dart';
 import 'package:petz_care/ui/register_page.dart';
-
+import 'package:petz_care/ui/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,14 +26,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
-      initialRoute: LoginPage.id,
+      home: const SplashScreen(),
+      initialRoute: SplashScreen.id,
       routes: {
         MainScreen.routeName: (context) => MainScreen(),
         LoginPage.id: (context) => LoginPage(),
         RegistrationPage.id: (context) => RegistrationPage(),
         HomePage.id: (context) => HomePage(),
-
         MyProfile.id: (context) => MyProfile(),
         BookingScreen.id: (context) => BookingScreen()
       },
