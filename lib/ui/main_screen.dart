@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:petz_care/theme.dart';
 import 'package:petz_care/ui/home_page.dart';
 import 'package:petz_care/ui/profile_page.dart';
+import 'package:petz_care/ui/search_page.dart';
 import 'package:petz_care/widget/platform_widget.dart';
 
 class MainScreen extends StatefulWidget {
@@ -21,6 +22,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _listWidget = [
     HomePage(),
+    const SearchPage(),
     HomePage(),
     const MyProfile(),
   ];
@@ -34,6 +36,10 @@ class _MainScreenState extends State<MainScreen> {
   final _items = <Widget>[
     const Icon(
       Icons.home_rounded,
+      size: 30,
+    ),
+    const Icon(
+      Icons.search,
       size: 30,
     ),
     const Icon(

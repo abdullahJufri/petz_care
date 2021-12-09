@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:petz_care/firestore/all_clinic_ref.dart';
 import 'package:petz_care/model/city_model.dart';
-import 'package:petz_care/state_management.dart';
+// import 'package:petz_care/state_management.dart';
 
 class BookingScreen extends StatefulWidget {
   static const String id = 'booking_screen';
