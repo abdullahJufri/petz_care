@@ -19,38 +19,6 @@ class DetailPage extends StatelessWidget {
               height: 350,
               fit: BoxFit.cover,
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.arrow_back_outlined,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.favorite_border,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        // Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
             ListView(
               children: [
                 SizedBox(
@@ -141,6 +109,7 @@ class DetailPage extends StatelessWidget {
                             Text(
                               clinic.fullAddress,
                               textAlign: TextAlign.justify,
+                              style: TextStyle(),
                             ),
                             SizedBox(height: 20),
                             Row(
@@ -201,7 +170,39 @@ class DetailPage extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.favorite_border,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        // Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

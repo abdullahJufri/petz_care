@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:petz_care/theme.dart';
+import 'package:petz_care/ui/favorite_page.dart';
 import 'package:petz_care/ui/home_page.dart';
 import 'package:petz_care/ui/profile_page.dart';
 import 'package:petz_care/ui/search_page.dart';
@@ -23,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _listWidget = [
     HomePage(),
     const SearchPage(),
-    HomePage(),
+    const FavoritePage(),
     const MyProfile(),
   ];
 
