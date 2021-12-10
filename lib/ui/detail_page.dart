@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:petz_care/model/clinic.dart';
 import 'package:petz_care/theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
   final Clinic clinic;
@@ -8,6 +9,14 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    launchUrl(String url) async {
+      if (await canLaunch(url)) {
+        launch(url);
+      } else {
+        throw (url);
+      }
+    }
+
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -103,13 +112,34 @@ class DetailPage extends StatelessWidget {
                             ),
                             SizedBox(height: 20),
                             Text(
-                              'Location : ',
+                              'Detail Location : ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            Text(
-                              clinic.fullAddress,
-                              textAlign: TextAlign.justify,
-                              style: TextStyle(),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 2),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      clinic.fullAddress,
+                                      textAlign: TextAlign.justify,
+                                      style: TextStyle(),
+                                    ),
+                                  ),
+                                  SizedBox(width: 15),
+                                  InkWell(
+                                    onTap: () {
+                                      launchUrl(clinic.maps);
+                                    },
+                                    child: Image.asset(
+                                        'assets/images/btn_maps.png',
+                                        width: 45),
+                                  )
+                                ],
+                              ),
                             ),
                             SizedBox(height: 20),
                             Row(
@@ -152,15 +182,16 @@ class DetailPage extends StatelessWidget {
                                 horizontal: 27,
                               ),
                               height: 50,
-                              width:
-                                  MediaQuery.of(context).size.width - (2 * 5),
+                              width: MediaQuery.of(context).size.width,
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    launchUrl('smsto:${clinic.telp}');
+                                  },
                                   child: Text('Book Now')),
                             )
                           ],

@@ -76,43 +76,45 @@ class SpaceCard extends StatelessWidget {
             SizedBox(
               width: 20,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  clinic.name,
-                  style: blackTextStyle.copyWith(
-                    fontSize: 17,
-                  ),
-                ),
-                SizedBox(
-                  height: 2,
-                ),
-                Text.rich(
-                  TextSpan(
-                    text: '${clinic.address}',
-                    style: greyTextStyle.copyWith(
-                      fontSize: 14,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    clinic.name,
+                    style: blackTextStyle.copyWith(
+                      fontSize: 17,
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.room,
-                      color: Colors.red,
-                      size: 18,
+                  SizedBox(
+                    height: 2,
+                  ),
+                  Text.rich(
+                    TextSpan(
+                      text: '${clinic.address}',
+                      style: greyTextStyle.copyWith(
+                        fontSize: 14,
+                      ),
                     ),
-                    Text(
-                      '${clinic.city}',
-                      style: greyTextStyle,
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.room,
+                        color: Colors.red,
+                        size: 18,
+                      ),
+                      Text(
+                        '${clinic.city}',
+                        style: greyTextStyle,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),

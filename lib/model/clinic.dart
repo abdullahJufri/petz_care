@@ -38,6 +38,7 @@ class Clinic {
     required this.service,
     required this.price,
     required this.fullAddress,
+    required this.maps,
   });
 
   String id;
@@ -51,6 +52,7 @@ class Clinic {
   String service;
   String price;
   String fullAddress;
+  String maps;
 
   factory Clinic.fromJson(Map<String, dynamic> json) => Clinic(
         id: json["id"],
@@ -64,6 +66,7 @@ class Clinic {
         service: json["service"],
         price: json["price"],
         fullAddress: json["fullAddress"],
+        maps: json["maps"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -78,5 +81,6 @@ class Clinic {
         "service": service,
         "price": price,
         "fullAddress": fullAddress,
+        "maps": maps,
       };
 }
