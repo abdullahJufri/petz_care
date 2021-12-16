@@ -34,7 +34,8 @@ class MyApp extends StatelessWidget {
         LoginPage.id: (context) => LoginPage(),
         RegistrationPage.id: (context) => RegistrationPage(),
         HomePage.id: (context) => HomePage(),
-        // DetailPage.id: (context) => DetailPage(),
+        // DetailPage: (context) => DetailPage(),
+
 
         MyProfile.id: (context) => MyProfile(),
         BookingScreen.id: (context) => BookingScreen()
