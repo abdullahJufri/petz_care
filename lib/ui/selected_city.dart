@@ -1,0 +1,191 @@
+import 'package:flutter/material.dart';
+import 'package:petz_care/firestore/query_controller.dart';
+import 'package:petz_care/theme.dart';
+import 'package:petz_care/ui/detail_page.dart';
+
+class SelectedCity extends StatefulWidget {
+  static const String id = 'cityy_page';
+  const SelectedCity({Key? key}) : super(key: key);
+  @override
+  _SelectedCityState createState() => _SelectedCityState();
+}
+
+class _SelectedCityState extends State<SelectedCity> {
+  QueryController? db1;
+  List docs = [];
+  bool _isLoading = false;
+
+  initdb() {
+    print('ola');
+    db1 = QueryController();
+    db1!.init();
+    db1!.filterCLinic().then((value) => {
+          setState(() {
+            docs = value;
+          })
+        });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchProducts();
+  }
+
+  _fetchProducts() async {
+    setState(() {
+      _isLoading = true;
+    });
+    await initdb();
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text('Petz Care'),
+        backgroundColor: Colors.black87,
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.builder(
+            itemCount: docs.length,
+            itemBuilder: (BuildContext context, int index) {
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailPage(
+                            ClinicAll: docs[index],
+                            db1: db1,
+                          ))).then((value) => {
+                    if (value != null) {_fetchProducts()}
+                  });
+                  // Navigator.of(context)
+                  //     .pushNamed(DetailPage.id, arguments: docs[index].id);
+                  // print(docs[index].id);
+                  // Navigator.pushNamed(context, DetailPage.id, arguments: clinic[index].id);
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => DetailPage(value: value),
+                  //   ),
+                  // );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(18),
+                        child: Container(
+                          width: 110,
+                          height: 105,
+                          child: Stack(
+                            children: [
+                              Image.network(
+                                docs[index]['pictureId'],
+                                width: 130,
+                                height: 110,
+                                fit: BoxFit.cover,
+                              ),
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: Container(
+                                  width: 70,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: purpleColor,
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(36),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/icon_star.png',
+                                        width: 22,
+                                        height: 22,
+                                      ),
+                                      Text(
+                                        '${docs[index]['rating']}/5.0',
+                                        style: whiteTextStyle.copyWith(
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${docs[index]['name']}',
+                            style: blackTextStyle.copyWith(
+                              fontSize: 17,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 2,
+                          ),
+                          Text.rich(
+                            TextSpan(
+                              text: '${docs[index]['address']}',
+                              style: greyTextStyle.copyWith(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.room,
+                                color: Colors.red,
+                                size: 18,
+                              ),
+                              Text(
+                                '${docs[index]['city']}',
+                                style: greyTextStyle,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+
+  }
+}

@@ -48,7 +48,8 @@ class _SpaceCardState extends State<SpaceCard> {
   @override
   Widget build(
     BuildContext context,
-  ) {
+  )
+  {
     return _isLoading
         ? const Center(child: CircularProgressIndicator())
         : ListView.builder(

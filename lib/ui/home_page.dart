@@ -2,11 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petz_care/firestore/clinic_all_ref.dart';
+import 'package:petz_care/model/city.dart';
 import 'package:petz_care/model/clinic.dart';
 import 'package:petz_care/model/clinic_model.dart';
 import 'package:petz_care/theme.dart';
 import 'package:petz_care/ui/detail_page.dart';
 import 'package:petz_care/ui/model_test.dart';
+import 'package:petz_care/widget/city_card.dart';
 import 'package:petz_care/widget/space_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -87,76 +89,78 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               height: 125,
-              // child: ListView(
-              //   scrollDirection: Axis.horizontal,
-              //   children: [
-              //     SizedBox(
-              //       width: 24,
-              //     ),
-              //     CityCard(
-              //       City(
-              //         id: 1,
-              //         name: 'Jakarta',
-              //         imageUrl: 'assets/city1.png',
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 20,
-              //     ),
-              //     CityCard(
-              //       City(
-              //         id: 2,
-              //         name: 'Bandung',
-              //         imageUrl: 'assets/city2.png',
-              //         isPopular: true,
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 20,
-              //     ),
-              //     CityCard(
-              //       City(
-              //         id: 3,
-              //         name: 'Surabaya',
-              //         imageUrl: 'assets/city3.png',
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 20,
-              //     ),
-              //     CityCard(
-              //       City(
-              //         id: 4,
-              //         name: 'Palembang',
-              //         imageUrl: 'assets/city4.png',
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 20,
-              //     ),
-              //     CityCard(
-              //       City(
-              //         id: 5,
-              //         name: 'Aceh',
-              //         imageUrl: 'assets/city5.png',
-              //         isPopular: true,
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 20,
-              //     ),
-              //     CityCard(
-              //       City(
-              //         id: 6,
-              //         name: 'Bogor',
-              //         imageUrl: 'assets/city6.png',
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 24,
-              //     ),
-              //   ],
-              // ),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  SizedBox(
+                    width: 24,
+                  ),
+                  Expanded(
+                    child: CityCard(
+                      City(
+                        id: 1,
+                        name: 'Jakarta',
+                        imageUrl: 'assets/images/city1.png',
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  CityCard(
+                    City(
+                      id: 2,
+                      name: 'Bandung',
+                      imageUrl: 'assets/images/city2.png',
+                      isPopular: true,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  CityCard(
+                    City(
+                      id: 3,
+                      name: 'Surabaya',
+                      imageUrl: 'assets/images/city3.png',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  CityCard(
+                    City(
+                      id: 4,
+                      name: 'Palembang',
+                      imageUrl: 'assets/images/city4.png',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  CityCard(
+                    City(
+                      id: 5,
+                      name: 'Aceh',
+                      imageUrl: 'assets/images/city5.png',
+                      isPopular: true,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  CityCard(
+                    City(
+                      id: 6,
+                      name: 'Bogor',
+                      imageUrl: 'assets/images/city6.png',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 24,
+                  ),
+                ],
+              ),
             ),
             SizedBox(
               height: 25,
@@ -176,7 +180,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               // height: 300,
-              height: MediaQuery.of(context).size.height / 3,
+              height: MediaQuery.of(context).size.height / 2,
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: edge,
@@ -185,10 +189,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-
-            SizedBox(
-              height: 15,
-            ),
 
           ],
         ),

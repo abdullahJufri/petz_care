@@ -1,20 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:petz_care/firestore/clinic_all_ref.dart';
 import 'package:petz_care/firestore/database.dart';
-import 'package:petz_care/model/clinic.dart';
-import 'package:petz_care/model/clinic_model.dart';
+import 'package:petz_care/firestore/query_controller.dart';
 import 'package:petz_care/theme.dart';
 
 class DetailPage extends StatefulWidget {
   // final String clinic;
-  DetailPage({Key? key, this.ClinicAll, this.db}) : super(key: key);
+  DetailPage({Key? key, this.ClinicAll, this.db, this.db1}) : super(key: key);
   Map? ClinicAll;
+
   Database? db;
-
-
-
+  QueryController? db1;
 
   // final Clinic clinic;
   // const DetailPage({Key? key, required this.clinic,}) : super(key: key);
@@ -32,9 +27,7 @@ class _DetailPageState extends State<DetailPage> {
     super.initState();
     print(widget.ClinicAll);
     nameController.text = widget.ClinicAll!['name'];
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -99,9 +92,9 @@ class _DetailPageState extends State<DetailPage> {
                                 ),
                                 Expanded(
                                     child: Text(
-                                      '${widget.ClinicAll!['rating'].toString()}',
-                                      style: TextStyle(fontWeight: FontWeight.bold),
-                                    )),
+                                  '${widget.ClinicAll!['city'].toString()}',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                )),
                                 Row(
                                   children: [
                                     Icon(
@@ -130,7 +123,8 @@ class _DetailPageState extends State<DetailPage> {
                                       size: 18,
                                     ),
                                     SizedBox(width: 5),
-                                    Text('${widget.ClinicAll!['name']}'),
+                                    Text(
+                                        '${widget.ClinicAll!['rating'].toString()}'),
                                   ],
                                 ),
                               ],
@@ -141,7 +135,7 @@ class _DetailPageState extends State<DetailPage> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              '${widget.ClinicAll!['city']}',
+                              '${widget.ClinicAll!['fullAddress']}',
                               textAlign: TextAlign.justify,
                               style: TextStyle(),
                             ),
@@ -165,7 +159,8 @@ class _DetailPageState extends State<DetailPage> {
                               children: [
                                 Text('${widget.ClinicAll!['service']}'),
                                 SizedBox(width: 10),
-                                Text('${widget.ClinicAll!['price'].toString()}'),
+                                Text(
+                                    '${widget.ClinicAll!['price'].toString()}'),
                               ],
                             ),
                             SizedBox(height: 20),
@@ -187,7 +182,7 @@ class _DetailPageState extends State<DetailPage> {
                               ),
                               height: 50,
                               width:
-                              MediaQuery.of(context).size.width - (2 * 5),
+                                  MediaQuery.of(context).size.width - (2 * 5),
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
@@ -241,6 +236,5 @@ class _DetailPageState extends State<DetailPage> {
         ),
       ),
     );
-
   }
 }
