@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:petz_care/ui/home_page.dart';
 import 'package:petz_care/ui/main_screen.dart';
-import 'package:petz_care/ui/model_test.dart';
+import 'package:petz_care/model/user.dart';
 
 class RegistrationPage extends StatefulWidget {
   static const String id = 'reg_page';

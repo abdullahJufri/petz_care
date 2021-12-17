@@ -1,47 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:petz_care/firestore/database.dart';
-import 'package:petz_care/firestore/query_controller.dart';
 import 'package:petz_care/theme.dart';
 
-class DetailPage extends StatefulWidget {
+class DetailSearch extends StatefulWidget {
+  const DetailSearch({Key? key, this.data}) : super(key: key);
   final QueryDocumentSnapshot<Object?>? data;
 
-  // final String clinic;
-  DetailPage({Key? key, this.data, this.ClinicAll, this.db, this.db1}) : super(key: key);
-  Map? ClinicAll;
-  Database? db;
-  QueryController? db1;
-
-
-
-  // final Clinic clinic;
-  // const DetailPage({Key? key, required this.clinic,}) : super(key: key);
-  // static const String id = 'detail_page';
-
   @override
-  State<DetailPage> createState() => _DetailPageState();
+  _DetailSearchState createState() => _DetailSearchState();
 }
 
-class _DetailPageState extends State<DetailPage> {
-  TextEditingController nameController = new TextEditingController();
+class _DetailSearchState extends State<DetailSearch> {
+GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    print(widget.ClinicAll);
-    nameController.text = widget.ClinicAll!['name'];
+    print(widget.data);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _globalKey,
       body: SafeArea(
         bottom: false,
         child: Stack(
           children: [
             Image.network(
-              widget.ClinicAll!['pictureId'],
+              widget.data!['pictureId'],
               width: MediaQuery.of(context).size.width,
               height: 350,
               fit: BoxFit.cover,
@@ -75,7 +63,7 @@ class _DetailPageState extends State<DetailPage> {
                             // ),
                             Center(
                               child: Text(
-                                '${widget.ClinicAll!['name']}',
+                                '${widget.data!['name']}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
@@ -96,9 +84,9 @@ class _DetailPageState extends State<DetailPage> {
                                 ),
                                 Expanded(
                                     child: Text(
-                                  '${widget.ClinicAll!['city'].toString()}',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                )),
+                                      '${widget.data!['city'].toString()}',
+                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    )),
                                 Row(
                                   children: [
                                     Icon(
@@ -128,7 +116,7 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                     SizedBox(width: 5),
                                     Text(
-                                        '${widget.ClinicAll!['rating'].toString()}'),
+                                        '${widget.data!['rating'].toString()}'),
                                   ],
                                 ),
                               ],
@@ -139,7 +127,7 @@ class _DetailPageState extends State<DetailPage> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              '${widget.ClinicAll!['fullAddress']}',
+                              '${widget.data!['fullAddress']}',
                               textAlign: TextAlign.justify,
                               style: TextStyle(),
                             ),
@@ -161,10 +149,10 @@ class _DetailPageState extends State<DetailPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text('${widget.ClinicAll!['service']}'),
+                                Text('${widget.data!['service']}'),
                                 SizedBox(width: 10),
                                 Text(
-                                    '${widget.ClinicAll!['price'].toString()}'),
+                                    '${widget.data!['price'].toString()}'),
                               ],
                             ),
                             SizedBox(height: 20),
@@ -172,13 +160,13 @@ class _DetailPageState extends State<DetailPage> {
                               'Opening Hours : ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            Text('${widget.ClinicAll!['workingHours']}'),
+                            Text('${widget.data!['workingHours']}'),
                             SizedBox(height: 20),
                             Text(
                               'Number Phone : ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            Text('${widget.ClinicAll!['telp']}'),
+                            Text('${widget.data!['telp']}'),
                             SizedBox(height: 20),
                             Container(
                               margin: EdgeInsets.symmetric(
@@ -186,7 +174,7 @@ class _DetailPageState extends State<DetailPage> {
                               ),
                               height: 50,
                               width:
-                                  MediaQuery.of(context).size.width - (2 * 5),
+                              MediaQuery.of(context).size.width - (2 * 5),
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(

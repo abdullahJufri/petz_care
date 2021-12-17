@@ -7,7 +7,9 @@ import 'package:petz_care/model/clinic.dart';
 import 'package:petz_care/model/clinic_model.dart';
 import 'package:petz_care/theme.dart';
 import 'package:petz_care/ui/detail_page.dart';
-import 'package:petz_care/ui/model_test.dart';
+import 'package:petz_care/model/user.dart';
+import 'package:petz_care/ui/search/search_page.dart';
+
 import 'package:petz_care/widget/city_card.dart';
 import 'package:petz_care/widget/space_card.dart';
 
@@ -42,6 +44,11 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: whiteColor,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.search),
+        onPressed: () => showSearch(context: context, delegate: ClinicSearch()),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       body: SafeArea(
         bottom: false,
         child: ListView(
@@ -188,6 +195,7 @@ class _HomePageState extends State<HomePage> {
                 child: SpaceCard()
               ),
             ),
+
 
 
           ],
