@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:petz_care/ui/model_test.dart';
+import 'package:petz_care/model/user.dart';
 
 class MyProfile extends StatefulWidget {
   static const String id = 'My_profile';
