@@ -165,14 +165,26 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                   ),
                                   SizedBox(width: 15),
-                                  InkWell(
-                                    onTap: () {
-                                      launchUrl('${widget.ClinicAll!['maps']}');
-                                    },
-                                    child: Image.asset(
-                                        'assets/images/btn_maps.png',
-                                        width: 45),
-                                  )
+
+                                  CircleAvatar(
+                                    backgroundColor: Colors.grey,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        launchUrl(
+                                            '${widget.ClinicAll!['maps']}');
+                                      },
+                                      icon: const Icon(Icons.room),
+                                    ),
+                                  ),
+
+                                  // InkWell(
+                                  //   onTap: () {
+                                  //     launchUrl('${widget.ClinicAll!['maps']}');
+                                  //   },
+                                  //   child: Image.asset(
+                                  //       'assets/images/btn_maps.png',
+                                  //       width: 45),
+                                  // )
                                 ],
                               ),
                             ),

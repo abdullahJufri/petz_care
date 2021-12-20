@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:petz_care/ui/home_page.dart';
+import 'package:petz_care/ui/login_page.dart';
 import 'package:petz_care/ui/main_screen.dart';
 import 'package:petz_care/model/user.dart';
 
@@ -303,6 +304,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
     User? user = _auth.currentUser;
     UserModel userModel = UserModel();
 
+    Fluttertoast.showToast(msg: "Account created successfully :)");
+    Navigator.pushAndRemoveUntil(context,
+        MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
+
     // writing all the values
     userModel.email = user!.email;
     userModel.uid = user.uid;
@@ -314,13 +319,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
         .collection("user")
         .doc(user.uid)
         .set(userModel.toMap());
-
-    Fluttertoast.showToast(msg: "Account created successfully :)");
-
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => MainScreen()),
-        (route) => false);
   }
 
   void _togglePasswordView() {
