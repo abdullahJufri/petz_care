@@ -131,43 +131,45 @@ class _SpaceCardState extends State<SpaceCard> {
                 SizedBox(
                   width: 20,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${docs[index]['name']}',
-                      style: blackTextStyle.copyWith(
-                        fontSize: 17,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 2,
-                    ),
-                    Text.rich(
-                      TextSpan(
-                        text: '${docs[index]['address']}',
-                        style: greyTextStyle.copyWith(
-                          fontSize: 14,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${docs[index]['name']}',
+                        style: blackTextStyle.copyWith(
+                          fontSize: 17,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.room,
-                          color: Colors.red,
-                          size: 18,
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text.rich(
+                        TextSpan(
+                          text: '${docs[index]['address']}',
+                          style: greyTextStyle.copyWith(
+                            fontSize: 14,
+                          ),
                         ),
-                        Text(
-                          '${docs[index]['city']}',
-                          style: greyTextStyle,
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.room,
+                            color: Colors.red,
+                            size: 18,
+                          ),
+                          Text(
+                            '${docs[index]['city']}',
+                            style: greyTextStyle,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

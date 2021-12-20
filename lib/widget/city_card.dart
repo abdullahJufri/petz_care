@@ -61,7 +61,7 @@ class CityCard extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => SelectedCity()));
+                          builder: (context) => SelectedCity(city: city, )));
                 },
                 child: Text(
                   '${city.name}',

@@ -13,6 +13,7 @@ import 'package:petz_care/ui/search/search_page.dart';
 import 'package:petz_care/widget/city_card.dart';
 import 'package:petz_care/widget/space_card.dart';
 
+var nametes;
 class HomePage extends StatefulWidget {
   static const String id = 'home_page';
 
@@ -108,6 +109,7 @@ class _HomePageState extends State<HomePage> {
                         id: 1,
                         name: 'Jakarta',
                         imageUrl: 'assets/images/city1.png',
+
                       ),
                     ),
                   ),

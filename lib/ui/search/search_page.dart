@@ -50,7 +50,7 @@ class ClinicSearch extends SearchDelegate {
                     .contains(query.toLowerCase()))
                 .isEmpty) {
               return Center(
-                child: Text('Tidak dapat menemukan klinil....'),
+                child: Text('Tidak dapat menemukan klinik....'),
               );
             }
             print(snapshot.data);
@@ -149,43 +149,45 @@ class ClinicSearch extends SearchDelegate {
                           SizedBox(
                             width: 20,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '${name}',
-                                style: blackTextStyle.copyWith(
-                                  fontSize: 17,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 2,
-                              ),
-                              Text.rich(
-                                TextSpan(
-                                  text: '${address}',
-                                  style: greyTextStyle.copyWith(
-                                    fontSize: 14,
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${name}',
+                                  style: blackTextStyle.copyWith(
+                                    fontSize: 17,
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.room,
-                                    color: Colors.red,
-                                    size: 18,
+                                SizedBox(
+                                  height: 2,
+                                ),
+                                Text.rich(
+                                  TextSpan(
+                                    text: '${address}',
+                                    style: greyTextStyle.copyWith(
+                                      fontSize: 14,
+                                    ),
                                   ),
-                                  Text(
-                                    '${city}',
-                                    style: greyTextStyle,
-                                  ),
-                                ],
-                              ),
-                            ],
+                                ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.room,
+                                      color: Colors.red,
+                                      size: 18,
+                                    ),
+                                    Text(
+                                      '${city}',
+                                      style: greyTextStyle,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),

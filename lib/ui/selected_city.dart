@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:petz_care/firestore/query_controller.dart';
+import 'package:petz_care/model/city.dart';
 import 'package:petz_care/theme.dart';
 import 'package:petz_care/ui/detail_page.dart';
+import 'package:petz_care/widget/city_card.dart';
 
 class SelectedCity extends StatefulWidget {
   static const String id = 'cityy_page';
-  const SelectedCity({Key? key}) : super(key: key);
+  // final CityCard cityCard;
+  final City city;
+  // SelectedCity({required this.city,});
+
+  const SelectedCity({Key? key, required this.city}) : super(key: key);
   @override
-  _SelectedCityState createState() => _SelectedCityState();
+  _SelectedCityState createState() => _SelectedCityState(city: city);
 }
 
 class _SelectedCityState extends State<SelectedCity> {
+  final City city;
+   _SelectedCityState({required this.city,});
   QueryController? db1;
   List docs = [];
   bool _isLoading = false;
 
+
+
   initdb() {
     print('ola');
-    db1 = QueryController();
+
+    db1 = QueryController(city: city);
     db1!.init();
     db1!.filterCLinic().then((value) => {
           setState(() {
