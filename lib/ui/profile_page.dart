@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petz_care/model/user.dart';
+import 'package:petz_care/ui/login_page.dart';
 
 class MyProfile extends StatefulWidget {
   static const String id = 'My_profile';
@@ -12,6 +13,7 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   var nameController = TextEditingController();
   var addressController = TextEditingController();
 
@@ -167,13 +169,18 @@ class _MyProfileState extends State<MyProfile> {
                       text: 'Rate App',
                       icon: Icons.star,
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    ProfileWidget(
-                      text: 'Log Out',
-                      icon: Icons.logout_outlined,
-                    ),
+                    ElevatedButton(
+                        onPressed: () async {
+                          await _auth.signOut();
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (_) {
+                                return LoginPage();
+                              },
+                            ),
+                          );
+                        },
+                        child: Text('Log Out'))
                   ],
                 ),
               )

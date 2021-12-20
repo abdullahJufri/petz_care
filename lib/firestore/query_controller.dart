@@ -5,9 +5,9 @@ import 'package:petz_care/model/city.dart';
 class QueryController {
   FirebaseFirestore? firestore;
   final City city;
-  QueryController({required this.city,});
-
-
+  QueryController({
+    required this.city,
+  });
 
   init() {
     firestore = FirebaseFirestore.instance;
@@ -15,9 +15,12 @@ class QueryController {
 
   Future<List> filterCLinic() async {
     QuerySnapshot querySnapshot;
-    List docs=[];
+    List docs = [];
     try {
-      querySnapshot = await firestore!.collection('ClinicAll').where("city", isEqualTo: "${city.name}").get();
+      querySnapshot = await firestore!
+          .collection('ClinicAll')
+          .where("city", isEqualTo: "${city.name}")
+          .get();
       if (querySnapshot.docs.isNotEmpty) {
         for (var doc in querySnapshot.docs.toList()) {
           Map a = {
@@ -31,18 +34,16 @@ class QueryController {
             "price": doc['price'],
             "service": doc['service'],
             "telp": doc['telp'],
-            "workingHours": doc['workingHours']
+            "workingHours": doc['workingHours'],
+            "maps": doc['maps']
           };
           docs.add(a);
         }
         return docs;
       }
-    }
-    catch(e){
+    } catch (e) {
       print(e);
     }
     return docs;
-
   }
-
 }

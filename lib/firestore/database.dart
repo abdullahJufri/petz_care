@@ -10,7 +10,7 @@ class Database {
 
   Future<List> readClinic() async {
     QuerySnapshot querySnapshot;
-    List docs=[];
+    List docs = [];
     try {
       querySnapshot = await firestore!.collection('ClinicAll').get();
       if (querySnapshot.docs.isNotEmpty) {
@@ -26,17 +26,16 @@ class Database {
             "price": doc['price'],
             "service": doc['service'],
             "telp": doc['telp'],
-            "workingHours": doc['workingHours']
+            "workingHours": doc['workingHours'],
+            "maps": doc['maps']
           };
           docs.add(a);
         }
         return docs;
       }
-    }
-    catch(e){
+    } catch (e) {
       print(e);
     }
     return docs;
   }
-
 }

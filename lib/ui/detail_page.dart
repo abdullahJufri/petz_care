@@ -6,6 +6,7 @@ import 'package:petz_care/firestore/query_controller.dart';
 import 'package:petz_care/theme.dart';
 import 'package:petz_care/widget/flushbar.dart';
 import 'package:petz_care/widget/text_fied.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatefulWidget {
   // final String clinic;
@@ -38,6 +39,14 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    launchUrl(String url) async {
+      if (await canLaunch(url)) {
+        launch(url);
+      } else {
+        throw (url);
+      }
+    }
+
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -141,35 +150,82 @@ class _DetailPageState extends State<DetailPage> {
                               'Location : ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            Text(
-                              '${widget.ClinicAll!['fullAddress']}',
-                              textAlign: TextAlign.justify,
-                              style: TextStyle(),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 2),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      '${widget.ClinicAll!['fullAddress']}',
+                                      textAlign: TextAlign.justify,
+                                      style: TextStyle(),
+                                    ),
+                                  ),
+                                  SizedBox(width: 15),
+                                  InkWell(
+                                    onTap: () {
+                                      launchUrl('${widget.ClinicAll!['maps']}');
+                                    },
+                                    child: Image.asset(
+                                        'assets/images/btn_maps.png',
+                                        width: 45),
+                                  )
+                                ],
+                              ),
                             ),
                             SizedBox(height: 20),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(
-                                  'Service : ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                Column(
+                                  children: [
+                                    Text(
+                                      'Service : ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text('${widget.ClinicAll!['service']}'),
+                                  ],
                                 ),
-                                SizedBox(width: 8),
-                                Text(
-                                  'Price : ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      'Price : ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                        '${widget.ClinicAll!['price'].toString()}'),
+                                  ],
+                                )
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text('${widget.ClinicAll!['service']}'),
-                                SizedBox(width: 10),
-                                Text(
-                                    '${widget.ClinicAll!['price'].toString()}'),
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            //   children: [
+                            //     Text(
+                            //       'Service : ',
+                            //       style: TextStyle(fontWeight: FontWeight.bold),
+                            //     ),
+                            //     SizedBox(width: 8),
+                            //     Text(
+                            //       'Price : ',
+                            //       style: TextStyle(fontWeight: FontWeight.bold),
+                            //     ),
+                            //   ],
+                            // ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            //   children: [
+                            //     Text('${widget.ClinicAll!['service']}'),
+                            //     SizedBox(width: 10),
+                            //     Text(
+                            //         '${widget.ClinicAll!['price'].toString()}'),
+                            //   ],
+                            // ),
                             SizedBox(height: 20),
                             Text(
                               'Opening Hours : ',
