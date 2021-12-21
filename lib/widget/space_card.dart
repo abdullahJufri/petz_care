@@ -137,23 +137,39 @@ class _SpaceCardState extends State<SpaceCard> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                '${docs[index]['name']}',
-                                style: blackTextStyle.copyWith(
-                                  fontSize: 17,
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                child: Text(
+                                  '${docs[index]['name']}',
+                                  overflow: TextOverflow.ellipsis,
+                                  style: blackTextStyle.copyWith(
+                                    fontSize: 17,
+                                  ),
                                 ),
                               ),
                               SizedBox(
                                 height: 2,
                               ),
-                              Text.rich(
-                                TextSpan(
-                                  text: '${docs[index]['address']}',
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                child: Text(
+                                  '${docs[index]['address']}',
+                                  overflow: TextOverflow.ellipsis,
+
                                   style: greyTextStyle.copyWith(
                                     fontSize: 14,
                                   ),
                                 ),
                               ),
+                              // Text.rich(
+                              //   TextSpan(
+                              //     text: '${docs[index]['address']}',
+                              //
+                              //     style: greyTextStyle.copyWith(
+                              //       fontSize: 14,
+                              //     ),
+                              //   ),
+                              // ),
                               SizedBox(
                                 height: 16,
                               ),
