@@ -6,6 +6,7 @@ import 'package:petz_care/firestore/query_controller.dart';
 import 'package:petz_care/theme.dart';
 import 'package:petz_care/widget/flushbar.dart';
 import 'package:petz_care/widget/text_fied.dart';
+import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatefulWidget {
@@ -431,11 +432,13 @@ class _DetailPageState extends State<DetailPage> {
                     backgroundColor: Colors.white,
                     child: IconButton(
                       icon: const Icon(
-                        Icons.favorite_border,
+                        Icons.share,
                         color: Colors.black,
                       ),
                       onPressed: () {
-                        // Navigator.pop(context);
+                        Share.share(
+                          "${widget.ClinicAll!['name']} \n address : \n${widget.ClinicAll!['fullAddress']} \n rating : \n${widget.ClinicAll!['rating'].toString()}",
+                        );
                       },
                     ),
                   ),

@@ -14,6 +14,7 @@ import 'package:petz_care/widget/city_card.dart';
 import 'package:petz_care/widget/space_card.dart';
 
 var nametes;
+
 class HomePage extends StatefulWidget {
   static const String id = 'home_page';
 
@@ -36,8 +37,7 @@ class _HomePageState extends State<HomePage> {
       this.loggedInUser = UserModel.fromMap(value.data());
       setState(() {});
     });
-    }
-
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +45,12 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: whiteColor,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.search),
-        onPressed: () => showSearch(context: context, delegate: ClinicSearch()),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.search),
+      //   backgroundColor: Colors.blueGrey,
+      //   onPressed: () => ,
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       body: SafeArea(
         bottom: false,
         child: ListView(
@@ -59,12 +60,30 @@ class _HomePageState extends State<HomePage> {
             ),
             // NOTE: TITLE/HEADER
             Padding(
-              padding: EdgeInsets.only(left: edge),
-              child: Text(
-                'Explore Now',
-                style: blackTextStyle.copyWith(
-                  fontSize: 24,
-                ),
+              padding: EdgeInsets.only(left: edge, right: edge),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Explore Now',
+                    style: blackTextStyle.copyWith(
+                      fontSize: 24,
+                    ),
+                  ),
+                  CircleAvatar(
+                    radius: 22,
+                    backgroundColor: Colors.blueGrey,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        showSearch(context: context, delegate: ClinicSearch());
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(
@@ -88,8 +107,7 @@ class _HomePageState extends State<HomePage> {
               child: Text(
                 'Cities',
                 style: regularTextStyle.copyWith(
-                  fontSize: 16,
-                ),
+                    fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -109,7 +127,6 @@ class _HomePageState extends State<HomePage> {
                         id: 1,
                         name: 'Jakarta',
                         imageUrl: 'assets/images/city1.png',
-
                       ),
                     ),
                   ),
@@ -180,8 +197,7 @@ class _HomePageState extends State<HomePage> {
               child: Text(
                 'Recommended Clinic',
                 style: regularTextStyle.copyWith(
-                  fontSize: 16,
-                ),
+                    fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -191,19 +207,14 @@ class _HomePageState extends State<HomePage> {
               // height: 300,
               height: MediaQuery.of(context).size.height / 2,
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: edge,
-                ),
-                child: SpaceCard()
-              ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: edge,
+                  ),
+                  child: SpaceCard()),
             ),
-
-
-
           ],
         ),
       ),
-
     );
   }
 }

@@ -169,7 +169,14 @@ class _MyProfileState extends State<MyProfile> {
                       text: 'Rate App',
                       icon: Icons.star,
                     ),
+                    SizedBox(height: 15),
                     ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blueGrey,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(50),
+                          ),
+                        ),
                         onPressed: () async {
                           await _auth.signOut();
                           Navigator.of(context).pushReplacement(

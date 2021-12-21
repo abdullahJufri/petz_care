@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:petz_care/theme.dart';
 import 'package:petz_care/ui/search/detail_Search.dart';
 
@@ -7,7 +8,7 @@ class ClinicSearch extends SearchDelegate {
   // Database? db;
   // List docs = [];
   CollectionReference _firebaseFirestore =
-  FirebaseFirestore.instance.collection('ClinicAll');
+      FirebaseFirestore.instance.collection('ClinicAll');
 
   @override
   Widget build(BuildContext context) {
@@ -44,23 +45,23 @@ class ClinicSearch extends SearchDelegate {
           } else {
             if (snapshot.data!.docs
                 .where((QueryDocumentSnapshot<Object?> element) =>
-                element['name']
-                    .toString()
-                    .toLowerCase()
-                    .contains(query.toLowerCase()))
+                    element['name']
+                        .toString()
+                        .toLowerCase()
+                        .contains(query.toLowerCase()))
                 .isEmpty) {
               return Center(
-                child: Text('Tidak dapat menemukan klinik....'),
+                child: Lottie.asset('assets/not-found.json'),
               );
             }
             print(snapshot.data);
             return ListView(children: [
               ...snapshot.data!.docs
                   .where((QueryDocumentSnapshot<Object?> element) =>
-                  element['name']
-                      .toString()
-                      .toLowerCase()
-                      .contains(query.toLowerCase()))
+                      element['name']
+                          .toString()
+                          .toLowerCase()
+                          .contains(query.toLowerCase()))
                   .map((QueryDocumentSnapshot<Object?> data) {
                 final String name = data.get('name');
                 final String pictureId = data.get('pictureId');
@@ -70,8 +71,10 @@ class ClinicSearch extends SearchDelegate {
 
                 return InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => DetailSearch(data: data)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetailSearch(data: data)));
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(
@@ -123,9 +126,9 @@ class ClinicSearch extends SearchDelegate {
                                       ),
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                            MainAxisAlignment.center,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Image.asset(
                                             'assets/images/icon_star.png',
@@ -203,6 +206,6 @@ class ClinicSearch extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     // TODO: implement buildSuggestions
-    return Center(child: Text('Masukan nama klinik'));
+    return Center(child: Lottie.asset('assets/search.json'));
   }
 }

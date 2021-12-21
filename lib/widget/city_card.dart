@@ -7,62 +7,65 @@ import 'package:petz_care/ui/selected_city.dart';
 class CityCard extends StatelessWidget {
   final City city;
 
-
   CityCard(this.city);
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(18),
-      child: Container(
-        height: 250,
-        width: 120,
-        color: Color(0xffF6F7F8),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Image.asset(
-                  city.imageUrl,
-                  width: 120,
-                  height: 80,
-                  fit: BoxFit.cover,
-                ),
-                city.isPopular
-                    ? Align(
-                        alignment: Alignment.topRight,
-                        child: Container(
-                          width: 50,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: purpleColor,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(36),
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SelectedCity(
+              city: city,
+            ),
+          ),
+        );
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(18),
+        child: Container(
+          height: 250,
+          width: 120,
+          color: Color(0xffF6F7F8),
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Image.asset(
+                    city.imageUrl,
+                    width: 120,
+                    height: 80,
+                    fit: BoxFit.cover,
+                  ),
+                  city.isPopular
+                      ? Align(
+                          alignment: Alignment.topRight,
+                          child: Container(
+                            width: 50,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: purpleColor,
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(36),
+                              ),
+                            ),
+                            child: Center(
+                              child: Image.asset(
+                                'assets/images/icon_star.png',
+                                width: 22,
+                                height: 22,
+                              ),
                             ),
                           ),
-                          child: Center(
-                            child: Image.asset(
-                              'assets/images/icon_star.png',
-                              width: 22,
-                              height: 22,
-                            ),
-                          ),
-                        ),
-                      )
-                    : Container(),
-              ],
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SelectedCity(city: city, )));
-                },
+                        )
+                      : Container(),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Expanded(
                 child: Text(
                   '${city.name}',
                   style: blackTextStyle.copyWith(
@@ -70,8 +73,8 @@ class CityCard extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
