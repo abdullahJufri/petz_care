@@ -1,12 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:petz_care/theme.dart';
-import 'package:petz_care/ui/favorite_page.dart';
 import 'package:petz_care/ui/home_page.dart';
 import 'package:petz_care/ui/profile_page.dart';
-import 'package:petz_care/ui/search_page.dart';
 import 'package:petz_care/widget/platform_widget.dart';
 
 class MainScreen extends StatefulWidget {
@@ -23,8 +20,6 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _listWidget = [
     HomePage(),
-    const SearchPage(),
-    const FavoritePage(),
     const MyProfile(),
   ];
 
@@ -37,14 +32,6 @@ class _MainScreenState extends State<MainScreen> {
   final _items = <Widget>[
     const Icon(
       Icons.home_rounded,
-      size: 30,
-    ),
-    const Icon(
-      Icons.search,
-      size: 30,
-    ),
-    const Icon(
-      Icons.favorite_rounded,
       size: 30,
     ),
     const Icon(
@@ -62,8 +49,8 @@ class _MainScreenState extends State<MainScreen> {
           iconTheme: const IconThemeData(color: whiteColor),
         ),
         child: CurvedNavigationBar(
-          color: blackColor,
-          buttonBackgroundColor: blackColor,
+          color: Colors.blueGrey,
+          buttonBackgroundColor: Colors.blueGrey,
           backgroundColor: Colors.transparent,
           animationCurve: Curves.easeInOut,
           animationDuration: const Duration(milliseconds: 400),
@@ -78,7 +65,7 @@ class _MainScreenState extends State<MainScreen> {
 
   Widget _buildIos(BuildContext context) {
     return Container(
-      color: blackColor,
+      color: Colors.blueGrey,
       child: SafeArea(
         top: false,
         child: ClipRRect(
@@ -90,7 +77,7 @@ class _MainScreenState extends State<MainScreen> {
                 iconTheme: const IconThemeData(color: whiteColor),
               ),
               child: CurvedNavigationBar(
-                color: blackColor,
+                color: Colors.blueGrey,
                 buttonBackgroundColor: whiteColor,
                 backgroundColor: Colors.transparent,
                 animationCurve: Curves.easeInOutCirc,
@@ -114,12 +101,5 @@ class _MainScreenState extends State<MainScreen> {
       iosBuilder: _buildIos,
     );
   }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _notificationHelper
-  //       .configureSelectNotificationSubject(RestaurantDetailPage.routeName);
-  // }
 
 }

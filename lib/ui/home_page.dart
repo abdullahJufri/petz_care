@@ -2,11 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petz_care/model/city.dart';
-import 'package:petz_care/model/clinic.dart';
+import 'package:petz_care/model/user.dart';
 import 'package:petz_care/theme.dart';
-import 'package:petz_care/ui/model_test.dart';
+import 'package:petz_care/ui/search/search_page.dart';
 import 'package:petz_care/widget/city_card.dart';
 import 'package:petz_care/widget/space_card.dart';
+
+var nametes;
 
 class HomePage extends StatefulWidget {
   static const String id = 'home_page';
@@ -34,8 +36,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // var spaceProvider = Provider.of<SpaceProvider>(context);
-
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -47,12 +47,30 @@ class _HomePageState extends State<HomePage> {
             ),
             // NOTE: TITLE/HEADER
             Padding(
-              padding: EdgeInsets.only(left: edge),
-              child: Text(
-                'Explore Now',
-                style: blackTextStyle.copyWith(
-                  fontSize: 24,
-                ),
+              padding: EdgeInsets.only(left: edge, right: edge),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Explore Now',
+                    style: blackTextStyle.copyWith(
+                      fontSize: 24,
+                    ),
+                  ),
+                  CircleAvatar(
+                    radius: 22,
+                    backgroundColor: Colors.blueGrey,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        showSearch(context: context, delegate: ClinicSearch());
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(
@@ -76,8 +94,7 @@ class _HomePageState extends State<HomePage> {
               child: Text(
                 'Cities',
                 style: regularTextStyle.copyWith(
-                  fontSize: 16,
-                ),
+                    fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -91,11 +108,13 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     width: 24,
                   ),
-                  CityCard(
-                    City(
-                      id: 1,
-                      name: 'Jakarta',
-                      imageUrl: 'assets/images/city1.png',
+                  Expanded(
+                    child: CityCard(
+                      City(
+                        id: 1,
+                        name: 'Jakarta',
+                        imageUrl: 'assets/images/city1.jpg',
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -105,8 +124,7 @@ class _HomePageState extends State<HomePage> {
                     City(
                       id: 2,
                       name: 'Bandung',
-                      imageUrl: 'assets/images/city2.png',
-                      isPopular: true,
+                      imageUrl: 'assets/images/city2.jpg',
                     ),
                   ),
                   SizedBox(
@@ -116,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                     City(
                       id: 3,
                       name: 'Surabaya',
-                      imageUrl: 'assets/images/city3.png',
+                      imageUrl: 'assets/images/city3.jpg',
                     ),
                   ),
                   SizedBox(
@@ -126,28 +144,7 @@ class _HomePageState extends State<HomePage> {
                     City(
                       id: 4,
                       name: 'Palembang',
-                      imageUrl: 'assets/images/city4.png',
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  CityCard(
-                    City(
-                      id: 5,
-                      name: 'Aceh',
-                      imageUrl: 'assets/images/city5.png',
-                      isPopular: true,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  CityCard(
-                    City(
-                      id: 6,
-                      name: 'Bogor',
-                      imageUrl: 'assets/images/city6.png',
+                      imageUrl: 'assets/images/city4.jpg',
                     ),
                   ),
                   SizedBox(
@@ -165,8 +162,7 @@ class _HomePageState extends State<HomePage> {
               child: Text(
                 'Recommended Clinic',
                 style: regularTextStyle.copyWith(
-                  fontSize: 16,
-                ),
+                    fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -176,38 +172,14 @@ class _HomePageState extends State<HomePage> {
               // height: 300,
               height: MediaQuery.of(context).size.height / 2,
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: edge,
-                ),
-                child: FutureBuilder<String>(
-                    future: DefaultAssetBundle.of(context)
-                        .loadString('assets/clinic.json'),
-                    builder: (context, snapshot) {
-                      if (snapshot.data != null) {
-                        final List<Clinic> clinics =
-                            clinicsFromJson(snapshot.data!).clinics;
-                        return ListView.builder(
-                          itemCount: clinics.length,
-                          itemBuilder: (context, index) {
-                            return SpaceCard(clinics[index]);
-                          },
-                        );
-                      } else {
-                        return CircularProgressIndicator();
-                      }
-                    }),
-              ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: edge,
+                  ),
+                  child: SpaceCard()),
             ),
-
-            SizedBox(
-              height: 15,
-            ),
-            // NOTE: TIPS & GUIDANCE
-
           ],
         ),
       ),
-
     );
   }
 }

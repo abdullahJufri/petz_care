@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:petz_care/ui/model_test.dart';
+import 'package:petz_care/model/user.dart';
+import 'package:petz_care/ui/login_page.dart';
 
 class MyProfile extends StatefulWidget {
   static const String id = 'My_profile';
+
   const MyProfile({Key? key}) : super(key: key);
 
   @override
@@ -12,6 +14,7 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   var nameController = TextEditingController();
   var addressController = TextEditingController();
 
@@ -44,15 +47,7 @@ class _MyProfileState extends State<MyProfile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.black,
-                      ),
-                    ),
+                    Text(''),
                     Text(
                       'Profile',
                       style: TextStyle(
@@ -126,54 +121,24 @@ class _MyProfileState extends State<MyProfile> {
                         ),
                       ),
                     ),
-                    ProfileWidget(
-                      text: 'Edit Profile',
-                      icon: Icons.settings,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    ProfileWidget(
-                      text: 'Help',
-                      icon: Icons.help,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    ProfileWidget(
-                      text: 'Privacy & Policy',
-                      icon: Icons.privacy_tip,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    ProfileWidget(
-                      text: 'Term of Service',
-                      icon: Icons.report,
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        margin: EdgeInsets.only(top: 20, bottom: 10),
-                        child: Divider(
-                          color: Colors.black,
-                          thickness: 4,
-                          indent: 5,
-                          endIndent: 5,
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blueGrey,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(50),
+                          ),
                         ),
-                      ),
-                    ),
-                    ProfileWidget(
-                      text: 'Rate App',
-                      icon: Icons.star,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    ProfileWidget(
-                      text: 'Log Out',
-                      icon: Icons.logout_outlined,
-                    ),
+                        onPressed: () async {
+                          await _auth.signOut();
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (_) {
+                                return LoginPage();
+                              },
+                            ),
+                          );
+                        },
+                        child: Text('Log Out'))
                   ],
                 ),
               )

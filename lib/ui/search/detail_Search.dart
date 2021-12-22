@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sms/flutter_sms.dart';
-import 'package:petz_care/firestore/database.dart';
-import 'package:petz_care/firestore/query_controller.dart';
 import 'package:petz_care/model/user.dart';
 import 'package:petz_care/theme.dart';
 import 'package:petz_care/widget/flushbar.dart';
@@ -13,18 +11,16 @@ import 'package:petz_care/widget/text_fied.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DetailPage extends StatefulWidget {
-  DetailPage({Key? key, this.ClinicAll, this.db, this.db1}) : super(key: key);
-  Map? ClinicAll;
-
-  Database? db;
-  QueryController? db1;
+class DetailSearch extends StatefulWidget {
+  const DetailSearch({Key? key, this.data}) : super(key: key);
+  final QueryDocumentSnapshot<Object?>? data;
 
   @override
-  State<DetailPage> createState() => _DetailPageState();
+  _DetailSearchState createState() => _DetailSearchState();
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _DetailSearchState extends State<DetailSearch> {
+  GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   TextEditingController nameController = new TextEditingController();
   final _date = TextEditingController();
   final _time = TextEditingController();
@@ -35,8 +31,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
     super.initState();
-    print(widget.ClinicAll);
-    nameController.text = widget.ClinicAll!['name'];
+    print(widget.data);
     FirebaseFirestore.instance
         .collection("user")
         .doc(user!.uid)
@@ -57,16 +52,16 @@ class _DetailPageState extends State<DetailPage> {
       }
     }
 
-    List<String> recipents = ["${widget.ClinicAll!['telp']}"];
-    String whatsapp = widget.ClinicAll!['telp'];
-
+    List<String> recipents = ["${widget.data!['telp']}"];
+    String whatsapp = widget.data!['telp'];
     return Scaffold(
+      key: _globalKey,
       body: SafeArea(
         bottom: false,
         child: Stack(
           children: [
             Image.network(
-              widget.ClinicAll!['pictureId'],
+              widget.data!['pictureId'],
               width: MediaQuery.of(context).size.width,
               height: 350,
               fit: BoxFit.cover,
@@ -94,13 +89,9 @@ class _DetailPageState extends State<DetailPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // TextFormField(
-                            //   style: TextStyle(color: Colors.black),
-                            //   controller: nameController,
-                            // ),
                             Center(
                               child: Text(
-                                '${widget.ClinicAll!['name']}',
+                                '${widget.data!['name']}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
@@ -121,7 +112,7 @@ class _DetailPageState extends State<DetailPage> {
                                 ),
                                 Expanded(
                                     child: Text(
-                                  '${widget.ClinicAll!['city'].toString()}',
+                                  '${widget.data!['city'].toString()}',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 )),
                                 Row(
@@ -153,7 +144,7 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                     SizedBox(width: 5),
                                     Text(
-                                        '${widget.ClinicAll!['rating'].toString()}'),
+                                        '${widget.data!['rating'].toString()}'),
                                   ],
                                 ),
                               ],
@@ -172,7 +163,7 @@ class _DetailPageState extends State<DetailPage> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      '${widget.ClinicAll!['fullAddress']}',
+                                      '${widget.data!['fullAddress']}',
                                       textAlign: TextAlign.justify,
                                       style: TextStyle(),
                                     ),
@@ -182,8 +173,7 @@ class _DetailPageState extends State<DetailPage> {
                                     backgroundColor: Colors.grey,
                                     child: IconButton(
                                       onPressed: () {
-                                        launchUrl(
-                                            '${widget.ClinicAll!['maps']}');
+                                        launchUrl('${widget.data!['maps']}');
                                       },
                                       icon: const Icon(Icons.room),
                                     ),
@@ -203,10 +193,9 @@ class _DetailPageState extends State<DetailPage> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     for (int i = 0;
-                                        i < widget.ClinicAll!['service'].length;
+                                        i < widget.data!['service'].length;
                                         i++)
-                                      Text(
-                                          '${widget.ClinicAll!['service'][i]}'),
+                                      Text('${widget.data!['service'][i]}'),
                                   ],
                                 ),
                                 Column(
@@ -217,9 +206,9 @@ class _DetailPageState extends State<DetailPage> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     for (int i = 0;
-                                        i < widget.ClinicAll!['price'].length;
+                                        i < widget.data!['price'].length;
                                         i++)
-                                      Text('${widget.ClinicAll!['price'][i]}'),
+                                      Text('${widget.data!['price'][i]}'),
                                   ],
                                 )
                               ],
@@ -229,13 +218,13 @@ class _DetailPageState extends State<DetailPage> {
                               'Opening Hours : ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            Text('${widget.ClinicAll!['workingHours']}'),
+                            Text('${widget.data!['workingHours']}'),
                             SizedBox(height: 20),
                             Text(
                               'Number Phone : ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            Text('${widget.ClinicAll!['telp']}'),
+                            Text('${widget.data!['telp']}'),
                             SizedBox(height: 20),
                             Center(
                                 child: Text(
@@ -382,7 +371,7 @@ class _DetailPageState extends State<DetailPage> {
                                                     );
                                                   } else {
                                                     _sendSMS(
-                                                        "Saya ${loggedInUser.firstName} ${loggedInUser.secondName} akan melakukan booking klinik ${widget.ClinicAll!['name']}, pada \nTanggal: ${_date.text} \nJam: ${_time.text} \nService: ${_service.text}",
+                                                        "Saya ${loggedInUser.firstName} ${loggedInUser.secondName} akan melakukan booking klinik ${widget.data!['name']}, pada \nTanggal: ${_date.text} \nJam: ${_time.text} \nService: ${_service.text}",
                                                         recipents);
                                                   }
                                                   log(_date.text +
@@ -560,7 +549,7 @@ class _DetailPageState extends State<DetailPage> {
                                                           "https://api.whatsapp.com/send?phone=" +
                                                               whatsapp +
                                                               "&text=" +
-                                                              "Saya%20${loggedInUser.firstName}%20${loggedInUser.secondName}%20akan%20melakukan%20booking%20klinik%20${widget.ClinicAll!['name']}%2C%20pada%20%3A%20%0D%0ATanggal%20%3A%20${_date.text}%0D%0AJam%20%3A%20${_time.text}%0D%0AService%3A%20${_service.text}");
+                                                              "Saya%20${loggedInUser.firstName}%20${loggedInUser.secondName}%20akan%20melakukan%20booking%20klinik%20${widget.data!['name']}%2C%20pada%20%3A%20%0D%0ATanggal%20%3A%20${_date.text}%0D%0AJam%20%3A%20${_time.text}%0D%0AService%3A%20${_service.text}");
                                                 }
 
                                                 log(_date.text +
@@ -635,7 +624,7 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       onPressed: () {
                         Share.share(
-                          "${widget.ClinicAll!['name']} \n address : \n${widget.ClinicAll!['fullAddress']} \n rating : \n${widget.ClinicAll!['rating'].toString()}",
+                          "${widget.data!['name']} \n address : \n${widget.data!['fullAddress']} \n rating : \n${widget.data!['rating'].toString()}",
                         );
                       },
                     ),

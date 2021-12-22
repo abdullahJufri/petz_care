@@ -1,9 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:petz_care/ui/booking_screen.dart';
 import 'package:petz_care/ui/home_page.dart';
 import 'package:petz_care/ui/login_page.dart';
-
 import 'package:petz_care/ui/main_screen.dart';
 import 'package:petz_care/ui/profile_page.dart';
 import 'package:petz_care/ui/register_page.dart';
@@ -34,9 +32,7 @@ class MyApp extends StatelessWidget {
         RegistrationPage.id: (context) => RegistrationPage(),
         HomePage.id: (context) => HomePage(),
         MyProfile.id: (context) => MyProfile(),
-        BookingScreen.id: (context) => BookingScreen()
       },
-      // home: const MainScreen(),
     );
   }
 }

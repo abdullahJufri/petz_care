@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:petz_care/model/city.dart';
 import 'package:petz_care/theme.dart';
+import 'package:petz_care/ui/selected_city.dart';
 
 class CityCard extends StatelessWidget {
   final City city;
@@ -10,56 +10,70 @@ class CityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(18),
-      child: Container(
-        height: 150,
-        width: 120,
-        color: Color(0xffF6F7F8),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Image.asset(
-                  city.imageUrl,
-                  width: 120,
-                  height: 90,
-                  fit: BoxFit.cover,
-                ),
-                city.isPopular
-                    ? Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    width: 50,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      color: purpleColor,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(36),
-                      ),
-                    ),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/images/icon_star.png',
-                        width: 22,
-                        height: 22,
-                      ),
-                    ),
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SelectedCity(
+              city: city,
+            ),
+          ),
+        );
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(18),
+        child: Container(
+          height: 250,
+          width: 120,
+          color: Color(0xffF6F7F8),
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Image.asset(
+                    city.imageUrl,
+                    width: 120,
+                    height: 80,
+                    fit: BoxFit.cover,
                   ),
-                )
-                    : Container(),
-              ],
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              city.name,
-              style: blackTextStyle.copyWith(
-                fontSize: 16,
+                  city.isPopular
+                      ? Align(
+                          alignment: Alignment.topRight,
+                          child: Container(
+                            width: 50,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: purpleColor,
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(36),
+                              ),
+                            ),
+                            child: Center(
+                              child: Image.asset(
+                                'assets/images/icon_star.png',
+                                width: 22,
+                                height: 22,
+                              ),
+                            ),
+                          ),
+                        )
+                      : Container(),
+                ],
               ),
-            ),
-          ],
+              SizedBox(
+                height: 5,
+              ),
+              Expanded(
+                child: Text(
+                  '${city.name}',
+                  style: blackTextStyle.copyWith(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

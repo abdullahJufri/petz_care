@@ -1,14 +1,12 @@
-
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:petz_care/ui/home_page.dart';
 import 'package:petz_care/ui/main_screen.dart';
-
 import 'package:petz_care/ui/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   static const String id = 'login_page';
+
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -19,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>(); //form
 
   final TextEditingController emailController =
-  new TextEditingController(); //container untuk form
+      new TextEditingController(); //container untuk form
   final TextEditingController passwordController = new TextEditingController();
 
   //firebase
@@ -124,8 +122,21 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    Container(
+                      height: 250,
+                      width: 250,
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.contain,
+                          image: AssetImage(
+                            'assets/images/splash.jpg',
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(
-                      height: 50,
+                      height: 25,
                       child: Text(
                         "Petz Care",
                         style: TextStyle(
@@ -189,10 +200,10 @@ class _LoginPageState extends State<LoginPage> {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) => {
-        Fluttertoast.showToast(msg: "Login Successful"),
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => MainScreen())),
-      })
+                Fluttertoast.showToast(msg: "Login Successful"),
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => MainScreen())),
+              })
           .catchError((e) {
         Fluttertoast.showToast(msg: e!.message);
       });
@@ -201,11 +212,6 @@ class _LoginPageState extends State<LoginPage> {
 
   //isHiddenPassword
   void _togglePasswordView() {
-    // if (isHiddenPassword == true) {
-    //     isHiddenPassword = false;
-    // } else {
-    //   isHiddenPassword = true;
-    // }
     setState(() {
       isHiddenPassword = !isHiddenPassword;
     });
