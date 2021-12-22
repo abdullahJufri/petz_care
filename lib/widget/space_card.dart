@@ -5,10 +5,6 @@ import 'package:petz_care/ui/detail_page.dart';
 import '../theme.dart';
 
 class SpaceCard extends StatefulWidget {
-  // final Clinic clinic;
-  //
-  // const SpaceCard({Key? key, required this.clinic}) : super(key: key);
-
   @override
   State<SpaceCard> createState() => _SpaceCardState();
 }
@@ -66,16 +62,6 @@ class _SpaceCardState extends State<SpaceCard> {
                                 ))).then((value) => {
                           if (value != null) {_fetchProducts()}
                         });
-                    // Navigator.of(context)
-                    //     .pushNamed(DetailPage.id, arguments: docs[index].id);
-                    // print(docs[index].id);
-                    // Navigator.pushNamed(context, DetailPage.id, arguments: clinic[index].id);
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => DetailPage(value: value),
-                    //   ),
-                    // );
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
@@ -155,21 +141,11 @@ class _SpaceCardState extends State<SpaceCard> {
                                 child: Text(
                                   '${docs[index]['address']}',
                                   overflow: TextOverflow.ellipsis,
-
                                   style: greyTextStyle.copyWith(
                                     fontSize: 14,
                                   ),
                                 ),
                               ),
-                              // Text.rich(
-                              //   TextSpan(
-                              //     text: '${docs[index]['address']}',
-                              //
-                              //     style: greyTextStyle.copyWith(
-                              //       fontSize: 14,
-                              //     ),
-                              //   ),
-                              // ),
                               SizedBox(
                                 height: 16,
                               ),

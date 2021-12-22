@@ -14,16 +14,11 @@ import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatefulWidget {
-  // final String clinic;
   DetailPage({Key? key, this.ClinicAll, this.db, this.db1}) : super(key: key);
   Map? ClinicAll;
 
   Database? db;
   QueryController? db1;
-
-  // final Clinic clinic;
-  // const DetailPage({Key? key, required this.clinic,}) : super(key: key);
-  // static const String id = 'detail_page';
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -63,11 +58,7 @@ class _DetailPageState extends State<DetailPage> {
     }
 
     List<String> recipents = ["${widget.ClinicAll!['telp']}"];
-    // List<int> listService = widget.ClinicAll!['service'].size;
-    String message = "This is a test message!";
-    String whatsapp= widget.ClinicAll!['telp'];
-
-
+    String whatsapp = widget.ClinicAll!['telp'];
 
     return Scaffold(
       body: SafeArea(
@@ -130,9 +121,9 @@ class _DetailPageState extends State<DetailPage> {
                                 ),
                                 Expanded(
                                     child: Text(
-                                      '${widget.ClinicAll!['city'].toString()}',
-                                      style: TextStyle(fontWeight: FontWeight.bold),
-                                    )),
+                                  '${widget.ClinicAll!['city'].toString()}',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                )),
                                 Row(
                                   children: [
                                     Icon(
@@ -174,10 +165,10 @@ class _DetailPageState extends State<DetailPage> {
                             ),
                             Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 2),
+                                  const EdgeInsets.symmetric(horizontal: 2),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                     child: Text(
@@ -187,7 +178,6 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                   ),
                                   SizedBox(width: 15),
-
                                   CircleAvatar(
                                     backgroundColor: Colors.grey,
                                     child: IconButton(
@@ -198,15 +188,6 @@ class _DetailPageState extends State<DetailPage> {
                                       icon: const Icon(Icons.room),
                                     ),
                                   ),
-
-                                  // InkWell(
-                                  //   onTap: () {
-                                  //     launchUrl('${widget.ClinicAll!['maps']}');
-                                  //   },
-                                  //   child: Image.asset(
-                                  //       'assets/images/btn_maps.png',
-                                  //       width: 45),
-                                  // )
                                 ],
                               ),
                             ),
@@ -222,8 +203,8 @@ class _DetailPageState extends State<DetailPage> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     for (int i = 0;
-                                    i < widget.ClinicAll!['service'].length;
-                                    i++)
+                                        i < widget.ClinicAll!['service'].length;
+                                        i++)
                                       Text(
                                           '${widget.ClinicAll!['service'][i]}'),
                                   ],
@@ -236,36 +217,13 @@ class _DetailPageState extends State<DetailPage> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     for (int i = 0;
-                                    i < widget.ClinicAll!['price'].length;
-                                    i++)
+                                        i < widget.ClinicAll!['price'].length;
+                                        i++)
                                       Text('${widget.ClinicAll!['price'][i]}'),
                                   ],
                                 )
                               ],
                             ),
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            //   children: [
-                            //     Text(
-                            //       'Service : ',
-                            //       style: TextStyle(fontWeight: FontWeight.bold),
-                            //     ),
-                            //     SizedBox(width: 8),
-                            //     Text(
-                            //       'Price : ',
-                            //       style: TextStyle(fontWeight: FontWeight.bold),
-                            //     ),
-                            //   ],
-                            // ),
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            //   children: [
-                            //     Text('${widget.ClinicAll!['service']}'),
-                            //     SizedBox(width: 10),
-                            //     Text(
-                            //         '${widget.ClinicAll!['price'].toString()}'),
-                            //   ],
-                            // ),
                             SizedBox(height: 20),
                             Text(
                               'Opening Hours : ',
@@ -279,65 +237,253 @@ class _DetailPageState extends State<DetailPage> {
                             ),
                             Text('${widget.ClinicAll!['telp']}'),
                             SizedBox(height: 20),
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                horizontal: 27,
-                              ),
-                              height: 50,
-                              width:
-                              MediaQuery.of(context).size.width - (2 * 5),
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.blueGrey,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                            Center(
+                                child: Text(
+                              'Booking :',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )),
+                            SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 8,
                                   ),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.calendar_today,
-                                      size: 17,
-                                    ),
-                                    // SizedBox(width: 5),
-                                    Text('Make an Appointment by sms'),
-                                  ],
-                                ),
-                                onPressed: () {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    isScrollControlled: true,
-                                    elevation: 1,
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.vertical(
-                                        top: Radius.circular(20),
+                                  height: 50,
+                                  width: 100,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.blueGrey,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
                                       ),
                                     ),
-                                    builder: (context) => Container(
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Container(
-                                            child: Container(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.sms,
+                                          size: 17,
+                                        ),
+                                        // SizedBox(width: 5),
+                                        Text('by sms'),
+                                      ],
+                                    ),
+                                    onPressed: () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        isScrollControlled: true,
+                                        elevation: 1,
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(20),
+                                          ),
+                                        ),
+                                        builder: (context) => Container(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Container(
+                                                child: Container(
+                                                  margin:
+                                                      const EdgeInsets.fromLTRB(
+                                                          0, 8, 0, 8),
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.1,
+                                                  height: 4,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey.shade700,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 20,
+                                                ),
+                                                child: Expanded(
+                                                  child: FieldDateTime(
+                                                    ctrlText: _date,
+                                                    hint: "Select Date",
+                                                    disableBackDate: true,
+                                                    borderOutline: false,
+                                                    onSaved: (val) {},
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(height: 10),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 20,
+                                                ),
+                                                child: FieldDateTime(
+                                                  ctrlText: _time,
+                                                  hint: "Select Time",
+                                                  timeInput: true,
+                                                  borderOutline: false,
+                                                  onSaved: (val) {},
+                                                ),
+                                              ),
+                                              const SizedBox(height: 10),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 20,
+                                                ),
+                                                child: Container(),
+                                              ),
+                                              const SizedBox(height: 10),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  left: 20,
+                                                  right: 20,
+                                                  bottom: MediaQuery.of(context)
+                                                      .viewInsets
+                                                      .bottom,
+                                                ),
+                                                child: FieldInput(
+                                                  controller: _service,
+                                                  hint:
+                                                      "Enter the desired service",
+                                                  maxLength: 50,
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  if (_date.text.isEmpty) {
+                                                    return Alert.error(
+                                                      context: context,
+                                                      message:
+                                                          "Please choose a date",
+                                                    );
+                                                  }
+
+                                                  if (_time.text.isEmpty) {
+                                                    return Alert.error(
+                                                      context: context,
+                                                      message:
+                                                          "Please choose a time",
+                                                    );
+                                                  }
+
+                                                  if (_service.text.isEmpty) {
+                                                    return Alert.error(
+                                                      context: context,
+                                                      message:
+                                                          "Please input service",
+                                                    );
+                                                  } else {
+                                                    _sendSMS(
+                                                        "Saya ${loggedInUser.firstName} ${loggedInUser.secondName} akan melakukan booking klinik ${widget.ClinicAll!['name']}, pada \nTanggal: ${_date.text} \nJam: ${_time.text} \nService: ${_service.text}",
+                                                        recipents);
+                                                  }
+                                                  log(_date.text +
+                                                      " , " +
+                                                      _time.text);
+                                                },
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  margin: const EdgeInsets
+                                                      .symmetric(
+                                                    horizontal: 40,
+                                                    vertical: 25,
+                                                  ),
+                                                  padding:
+                                                      const EdgeInsets.all(15),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.blueGrey,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50),
+                                                  ),
+                                                  child: Expanded(
+                                                    child: Center(
+                                                      child: Text(
+                                                        "Make Appointment",
+                                                        style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 27,
+                                  ),
+                                  height: 50,
+                                  width: 100,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.blueGrey,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/whatsapp.png',
+                                          width: 20,
+                                          height: 20,
+                                          color: Colors.white,
+                                        ),
+                                        SizedBox(width: 5),
+                                        Text('by wa'),
+                                      ],
+                                    ),
+                                    onPressed: () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        isScrollControlled: true,
+                                        elevation: 1,
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(20),
+                                          ),
+                                        ),
+                                        builder: (context) => Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Container(
                                               margin: const EdgeInsets.fromLTRB(
-                                                  0, 8, 0, 30),
+                                                  0, 8, 0, 8),
                                               width: MediaQuery.of(context)
-                                                  .size
-                                                  .width * 0.1,
+                                                      .size
+                                                      .width *
+                                                  0.1,
                                               height: 4,
                                               decoration: BoxDecoration(
                                                 color: Colors.grey.shade700,
                                                 borderRadius:
-                                                BorderRadius.circular(6),
+                                                    BorderRadius.circular(6),
                                               ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 20,
-                                            ),
-                                            child: Expanded(
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 20,
+                                              ),
                                               child: FieldDateTime(
                                                 ctrlText: _date,
                                                 hint: "Select Date",
@@ -346,273 +492,115 @@ class _DetailPageState extends State<DetailPage> {
                                                 onSaved: (val) {},
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 20,
+                                            const SizedBox(height: 10),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 20,
+                                              ),
+                                              child: FieldDateTime(
+                                                ctrlText: _time,
+                                                hint: "Select Time",
+                                                timeInput: true,
+                                                borderOutline: false,
+                                                onSaved: (val) {},
+                                              ),
                                             ),
-                                            child: FieldDateTime(
-                                              ctrlText: _time,
-                                              hint: "Select Time",
-                                              timeInput: true,
-                                              borderOutline: false,
-                                              onSaved: (val) {},
+                                            const SizedBox(height: 10),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 20,
+                                              ),
+                                              child: Container(),
                                             ),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 20,
+                                            const SizedBox(height: 10),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                left: 20,
+                                                right: 20,
+                                                bottom: MediaQuery.of(context)
+                                                    .viewInsets
+                                                    .bottom,
+                                              ),
+                                              child: FieldInput(
+                                                controller: _service,
+                                                hint:
+                                                    "Enter the desired service",
+                                                maxLength: 50,
+                                              ),
                                             ),
-                                            child: Container(),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              left: 20,
-                                              right: 20,
-                                              bottom: MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom,
-                                            ),
-                                            child: FieldInput(
-                                              controller: _service,
-                                              hint: "Enter the desired service",
-                                              maxLength: 50,
-                                            ),
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              if (_date.text.isEmpty) {
-                                                return Alert.error(
-                                                  context: context,
-                                                  message: "Please choose a date",
-                                                );
-                                              }
+                                            GestureDetector(
+                                              onTap: () {
+                                                if (_date.text.isEmpty) {
+                                                  return Alert.error(
+                                                    context: context,
+                                                    message:
+                                                        "Please choose a date",
+                                                  );
+                                                }
 
-                                              if (_time.text.isEmpty) {
-                                                return Alert.error(
-                                                  context: context,
-                                                  message: "Please choose a time",
-                                                );
-                                              }
+                                                if (_time.text.isEmpty) {
+                                                  return Alert.error(
+                                                    context: context,
+                                                    message:
+                                                        "Please choose a time",
+                                                  );
+                                                }
 
-                                              if (_service.text.isEmpty) {
-                                                return Alert.error(
-                                                  context: context,
-                                                  message: "Please input service",
-                                                );
-                                              } else {
-                                                _sendSMS(
-                                                    "Saya ${loggedInUser.firstName} ${loggedInUser.secondName} akan melakukan booking klinik ${widget.ClinicAll!['name']}, pada \nTanggal: ${_date.text} \nJam: ${_time.text} \nService: ${_service.text} \nJenis Hewan: Kucing ",
-                                                    recipents);
-                                              }
-                                              // DateTime date = DateTime.parse(_date.text);
-                                              // String pickedTimeFormat = DateFormat("EEEE").format(date);
-                                              // log(pickedTimeFormat.toString());
+                                                if (_service.text.isEmpty) {
+                                                  return Alert.error(
+                                                    context: context,
+                                                    message:
+                                                        "Please input service",
+                                                  );
+                                                } else {
+                                                  openWhatsapp(
+                                                      whatsappUrl:
+                                                          "https://api.whatsapp.com/send?phone=" +
+                                                              whatsapp +
+                                                              "&text=" +
+                                                              "Saya%20${loggedInUser.firstName}%20${loggedInUser.secondName}%20akan%20melakukan%20booking%20klinik%20${widget.ClinicAll!['name']}%2C%20pada%20%3A%20%0D%0ATanggal%20%3A%20${_date.text}%0D%0AJam%20%3A%20${_time.text}%0D%0AService%3A%20${_service.text}");
+                                                }
 
-                                              log(_date.text +
-                                                  " , " +
-                                                  _time.text);
-                                            },
-                                            child:  Container(
+                                                log(_date.text +
+                                                    " , " +
+                                                    _time.text);
+                                              },
+                                              child: Container(
                                                 width: double.infinity,
-                                                margin: const EdgeInsets.symmetric(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
                                                   horizontal: 40,
                                                   vertical: 25,
                                                 ),
-                                                padding: const EdgeInsets.all(15),
+                                                padding:
+                                                    const EdgeInsets.all(15),
                                                 decoration: BoxDecoration(
                                                   color: Colors.blueGrey,
                                                   borderRadius:
-                                                  BorderRadius.circular(50),
+                                                      BorderRadius.circular(50),
                                                 ),
-                                                child: Expanded(child: Center(
+                                                child: Center(
                                                   child: Text(
-                                                    "Make Appointment",
+                                                    "Make Appointment wa",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontWeight: FontWeight.w500,
+                                                      fontWeight:
+                                                          FontWeight.w500,
                                                     ),
                                                   ),
                                                 ),
-                                                ),
-
-
-                                            ),
-
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                            SizedBox(height: 20),
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                horizontal: 27,
-                              ),
-                              height: 50,
-                              width:
-                              MediaQuery.of(context).size.width - (2 * 5),
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.blueGrey,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.calendar_today,
-                                      size: 17,
-                                    ),
-                                    SizedBox(width: 5),
-                                    Text('Make an Appointment by wa'),
-                                  ],
-                                ),
-                                onPressed: () {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    isScrollControlled: true,
-                                    elevation: 1,
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.vertical(
-                                        top: Radius.circular(20),
-                                      ),
-                                    ),
-                                    builder: (context) => Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Container(
-                                          margin: const EdgeInsets.fromLTRB(
-                                              0, 8, 0, 30),
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.1,
-                                          height: 4,
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey.shade700,
-                                            borderRadius:
-                                            BorderRadius.circular(6),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 20,
-                                          ),
-                                          child: FieldDateTime(
-                                            ctrlText: _date,
-                                            hint: "Select Date",
-                                            disableBackDate: true,
-                                            borderOutline: false,
-                                            onSaved: (val) {},
-                                          ),
-                                        ),
-                                        const SizedBox(height: 10),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 20,
-                                          ),
-                                          child: FieldDateTime(
-                                            ctrlText: _time,
-                                            hint: "Select Time",
-                                            timeInput: true,
-                                            borderOutline: false,
-                                            onSaved: (val) {},
-                                          ),
-                                        ),
-                                        const SizedBox(height: 10),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 20,
-                                          ),
-                                          child: Container(),
-                                        ),
-                                        const SizedBox(height: 10),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                            left: 20,
-                                            right: 20,
-                                            bottom: MediaQuery.of(context)
-                                                .viewInsets
-                                                .bottom,
-                                          ),
-                                          child: FieldInput(
-                                            controller: _service,
-                                            hint: "Enter the desired service",
-                                            maxLength: 50,
-                                          ),
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            if (_date.text.isEmpty) {
-                                              return Alert.error(
-                                                context: context,
-                                                message: "Please choose a date",
-                                              );
-                                            }
-
-                                            if (_time.text.isEmpty) {
-                                              return Alert.error(
-                                                context: context,
-                                                message: "Please choose a time",
-                                              );
-                                            }
-
-                                            if (_service.text.isEmpty) {
-                                              return Alert.error(
-                                                context: context,
-                                                message: "Please input service",
-                                              );
-                                            } else {
-
-                                              openWhatsapp(whatsappUrl: "https://api.whatsapp.com/send?phone="+whatsapp+"&text="+"Saya%20${loggedInUser.firstName}%20${loggedInUser.secondName}%20akan%20melakukan%20booking%20klinik%20${widget.ClinicAll!['name']}%2C%20pada%20%3A%20%0D%0ATanggal%20%3A%20${_date.text}%0D%0AJam%20%3A%20${_time.text}%0D%0AService%3A%20${_service.text}%20%0D%0AJenis%20Hewan%20%3A%20Kucing");
-
-                                            }
-                                            // DateTime date = DateTime.parse(_date.text);
-                                            // String pickedTimeFormat = DateFormat("EEEE").format(date);
-                                            // log(pickedTimeFormat.toString());
-
-                                            log(_date.text +
-                                                " , " +
-                                                _time.text);
-                                          },
-                                          child:  Container(
-                                            width: double.infinity,
-                                            margin: const EdgeInsets.symmetric(
-                                              horizontal: 40,
-                                              vertical: 25,
-                                            ),
-                                            padding: const EdgeInsets.all(15),
-                                            decoration: BoxDecoration(
-                                              color: Colors.blueGrey,
-                                              borderRadius:
-                                              BorderRadius.circular(50),
-                                            ),
-                                            child: Center(
-                                              child: Text(
-                                                "Make Appointment wa",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
                                               ),
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              ),
-                            )
+                                      );
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -660,15 +648,10 @@ class _DetailPageState extends State<DetailPage> {
       ),
     );
   }
-
 }
 
-
-
-openWhatsapp({required String whatsappUrl}) async{
-
-
-  if(await canLaunch(whatsappUrl)){
+openWhatsapp({required String whatsappUrl}) async {
+  if (await canLaunch(whatsappUrl)) {
     await launch(whatsappUrl);
   }
 }
@@ -680,4 +663,3 @@ void _sendSMS(String message, List<String> recipents) async {
   });
   print(_result);
 }
-

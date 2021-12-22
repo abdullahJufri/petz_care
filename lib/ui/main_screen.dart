@@ -1,12 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:petz_care/theme.dart';
-import 'package:petz_care/ui/favorite_page.dart';
 import 'package:petz_care/ui/home_page.dart';
 import 'package:petz_care/ui/profile_page.dart';
-import 'package:petz_care/ui/search/search_page.dart';
 import 'package:petz_care/widget/platform_widget.dart';
 
 class MainScreen extends StatefulWidget {
@@ -23,8 +20,6 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _listWidget = [
     HomePage(),
-    // SearchPage(),
-    const FavoritePage(),
     const MyProfile(),
   ];
 
@@ -37,14 +32,6 @@ class _MainScreenState extends State<MainScreen> {
   final _items = <Widget>[
     const Icon(
       Icons.home_rounded,
-      size: 30,
-    ),
-    // const Icon(
-    //   Icons.search,
-    //   size: 30,
-    // ),
-    const Icon(
-      Icons.favorite_rounded,
       size: 30,
     ),
     const Icon(
@@ -114,12 +101,5 @@ class _MainScreenState extends State<MainScreen> {
       iosBuilder: _buildIos,
     );
   }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _notificationHelper
-  //       .configureSelectNotificationSubject(RestaurantDetailPage.routeName);
-  // }
 
 }

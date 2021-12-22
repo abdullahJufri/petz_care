@@ -1,15 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:petz_care/firestore/clinic_all_ref.dart';
 import 'package:petz_care/model/city.dart';
-import 'package:petz_care/model/clinic.dart';
-import 'package:petz_care/model/clinic_model.dart';
-import 'package:petz_care/theme.dart';
-import 'package:petz_care/ui/detail_page.dart';
 import 'package:petz_care/model/user.dart';
+import 'package:petz_care/theme.dart';
 import 'package:petz_care/ui/search/search_page.dart';
-
 import 'package:petz_care/widget/city_card.dart';
 import 'package:petz_care/widget/space_card.dart';
 
@@ -41,16 +36,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // var spaceProvider = Provider.of<SpaceProvider>(context);
-
     return Scaffold(
       backgroundColor: whiteColor,
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.search),
-      //   backgroundColor: Colors.blueGrey,
-      //   onPressed: () => ,
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       body: SafeArea(
         bottom: false,
         child: ListView(
@@ -126,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                       City(
                         id: 1,
                         name: 'Jakarta',
-                        imageUrl: 'assets/images/city1.png',
+                        imageUrl: 'assets/images/city1.jpg',
                       ),
                     ),
                   ),
@@ -137,8 +124,7 @@ class _HomePageState extends State<HomePage> {
                     City(
                       id: 2,
                       name: 'Bandung',
-                      imageUrl: 'assets/images/city2.png',
-                      isPopular: true,
+                      imageUrl: 'assets/images/city2.jpg',
                     ),
                   ),
                   SizedBox(
@@ -148,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                     City(
                       id: 3,
                       name: 'Surabaya',
-                      imageUrl: 'assets/images/city3.png',
+                      imageUrl: 'assets/images/city3.jpg',
                     ),
                   ),
                   SizedBox(
@@ -158,28 +144,7 @@ class _HomePageState extends State<HomePage> {
                     City(
                       id: 4,
                       name: 'Palembang',
-                      imageUrl: 'assets/images/city4.png',
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  CityCard(
-                    City(
-                      id: 5,
-                      name: 'Aceh',
-                      imageUrl: 'assets/images/city5.png',
-                      isPopular: true,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  CityCard(
-                    City(
-                      id: 6,
-                      name: 'Bogor',
-                      imageUrl: 'assets/images/city6.png',
+                      imageUrl: 'assets/images/city4.jpg',
                     ),
                   ),
                   SizedBox(

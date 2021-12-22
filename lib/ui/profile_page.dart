@@ -6,6 +6,7 @@ import 'package:petz_care/ui/login_page.dart';
 
 class MyProfile extends StatefulWidget {
   static const String id = 'My_profile';
+
   const MyProfile({Key? key}) : super(key: key);
 
   @override
@@ -46,15 +47,7 @@ class _MyProfileState extends State<MyProfile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.black,
-                      ),
-                    ),
+                    Text(''),
                     Text(
                       'Profile',
                       style: TextStyle(
@@ -128,48 +121,6 @@ class _MyProfileState extends State<MyProfile> {
                         ),
                       ),
                     ),
-                    ProfileWidget(
-                      text: 'Edit Profile',
-                      icon: Icons.settings,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    ProfileWidget(
-                      text: 'Help',
-                      icon: Icons.help,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    ProfileWidget(
-                      text: 'Privacy & Policy',
-                      icon: Icons.privacy_tip,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    ProfileWidget(
-                      text: 'Term of Service',
-                      icon: Icons.report,
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        margin: EdgeInsets.only(top: 20, bottom: 10),
-                        child: Divider(
-                          color: Colors.black,
-                          thickness: 4,
-                          indent: 5,
-                          endIndent: 5,
-                        ),
-                      ),
-                    ),
-                    ProfileWidget(
-                      text: 'Rate App',
-                      icon: Icons.star,
-                    ),
-                    SizedBox(height: 15),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.blueGrey,

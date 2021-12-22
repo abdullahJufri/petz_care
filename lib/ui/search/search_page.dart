@@ -5,8 +5,6 @@ import 'package:petz_care/theme.dart';
 import 'package:petz_care/ui/search/detail_Search.dart';
 
 class ClinicSearch extends SearchDelegate {
-  // Database? db;
-  // List docs = [];
   CollectionReference _firebaseFirestore =
       FirebaseFirestore.instance.collection('ClinicAll');
 
@@ -75,25 +73,6 @@ class ClinicSearch extends SearchDelegate {
                         context,
                         MaterialPageRoute(
                             builder: (context) => DetailSearch(data: data)));
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => DetailPage(
-                    //           ClinicAll: docs[index],
-                    //           db: db,
-                    //         ))).then((value) => {
-                    //   if (value != null) {_fetchProducts()}
-                    // });
-                    // Navigator.of(context)
-                    //     .pushNamed(DetailPage.id, arguments: docs[index].id);
-                    // print(docs[index].id);
-                    // Navigator.pushNamed(context, DetailPage.id, arguments: clinic[index].id);
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => DetailPage(value: value),
-                    //   ),
-                    // );
                   },
                   child: SafeArea(
                     child: Padding(
@@ -136,7 +115,7 @@ class ClinicSearch extends SearchDelegate {
                                             height: 22,
                                           ),
                                           Text(
-                                            '${rating.toString()}/5.0',
+                                            '${rating.toString()}',
                                             style: whiteTextStyle.copyWith(
                                               fontSize: 13,
                                             ),
@@ -156,18 +135,24 @@ class ClinicSearch extends SearchDelegate {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  '${name}',
-                                  style: blackTextStyle.copyWith(
-                                    fontSize: 17,
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Text(
+                                    '${name}',
+                                    overflow: TextOverflow.ellipsis,
+                                    style: blackTextStyle.copyWith(
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(
                                   height: 2,
                                 ),
-                                Text.rich(
-                                  TextSpan(
-                                    text: '${address}',
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Text(
+                                    '${address}',
+                                    overflow: TextOverflow.ellipsis,
                                     style: greyTextStyle.copyWith(
                                       fontSize: 14,
                                     ),

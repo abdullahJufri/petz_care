@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:petz_care/ui/home_page.dart';
 import 'package:petz_care/ui/main_screen.dart';
-
 import 'package:petz_care/ui/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   static const String id = 'login_page';
+
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -213,11 +212,6 @@ class _LoginPageState extends State<LoginPage> {
 
   //isHiddenPassword
   void _togglePasswordView() {
-    // if (isHiddenPassword == true) {
-    //     isHiddenPassword = false;
-    // } else {
-    //   isHiddenPassword = true;
-    // }
     setState(() {
       isHiddenPassword = !isHiddenPassword;
     });

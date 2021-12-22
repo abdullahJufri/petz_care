@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:petz_care/model/city.dart';
 
 class QueryController {
   FirebaseFirestore? firestore;
   final City city;
+
   QueryController({
     required this.city,
   });

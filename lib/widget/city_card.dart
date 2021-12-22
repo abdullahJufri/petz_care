@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:petz_care/firestore/query_controller.dart';
 import 'package:petz_care/model/city.dart';
 import 'package:petz_care/theme.dart';
 import 'package:petz_care/ui/selected_city.dart';
