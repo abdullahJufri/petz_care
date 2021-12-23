@@ -47,130 +47,128 @@ class _SpaceCardState extends State<SpaceCard> {
   ) {
     return _isLoading
         ? const Center(child: CircularProgressIndicator())
-        : Expanded(
-            child: ListView.builder(
-              itemCount: docs.length,
-              itemBuilder: (BuildContext context, int index) {
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DetailPage(
-                                  ClinicAll: docs[index],
-                                  db: db,
-                                ))).then((value) => {
-                          if (value != null) {_fetchProducts()}
-                        });
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(18),
-                          child: Container(
-                            width: 110,
-                            height: 105,
-                            child: Stack(
-                              children: [
-                                Image.network(
-                                  docs[index]['pictureId'],
-                                  width: 130,
-                                  height: 110,
-                                  fit: BoxFit.cover,
+        : ListView.builder(
+          itemCount: docs.length,
+          itemBuilder: (BuildContext context, int index) {
+            return InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetailPage(
+                              ClinicAll: docs[index],
+                              db: db,
+                            ))).then((value) => {
+                      if (value != null) {_fetchProducts()}
+                    });
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(18),
+                      child: Container(
+                        width: 110,
+                        height: 105,
+                        child: Stack(
+                          children: [
+                            Image.network(
+                              docs[index]['pictureId'],
+                              width: 130,
+                              height: 110,
+                              fit: BoxFit.cover,
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Container(
+                                width: 70,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: purpleColor,
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(36),
+                                  ),
                                 ),
-                                Align(
-                                  alignment: Alignment.topRight,
-                                  child: Container(
-                                    width: 70,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: purpleColor,
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(36),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/icon_star.png',
+                                      width: 22,
+                                      height: 22,
+                                    ),
+                                    Text(
+                                      '${docs[index]['rating']}',
+                                      style: whiteTextStyle.copyWith(
+                                        fontSize: 13,
                                       ),
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/images/icon_star.png',
-                                          width: 22,
-                                          height: 22,
-                                        ),
-                                        Text(
-                                          '${docs[index]['rating']}',
-                                          style: whiteTextStyle.copyWith(
-                                            fontSize: 13,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                  ],
                                 ),
-                              ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Text(
+                              '${docs[index]['name']}',
+                              overflow: TextOverflow.ellipsis,
+                              style: blackTextStyle.copyWith(
+                                fontSize: 17,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          SizedBox(
+                            height: 2,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Text(
+                              '${docs[index]['address']}',
+                              overflow: TextOverflow.ellipsis,
+                              style: greyTextStyle.copyWith(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Row(
                             children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                child: Text(
-                                  '${docs[index]['name']}',
-                                  overflow: TextOverflow.ellipsis,
-                                  style: blackTextStyle.copyWith(
-                                    fontSize: 17,
-                                  ),
-                                ),
+                              Icon(
+                                Icons.room,
+                                color: Colors.red,
+                                size: 18,
                               ),
-                              SizedBox(
-                                height: 2,
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                child: Text(
-                                  '${docs[index]['address']}',
-                                  overflow: TextOverflow.ellipsis,
-                                  style: greyTextStyle.copyWith(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.room,
-                                    color: Colors.red,
-                                    size: 18,
-                                  ),
-                                  Text(
-                                    '${docs[index]['city']}',
-                                    style: greyTextStyle,
-                                  ),
-                                ],
+                              Text(
+                                '${docs[index]['city']}',
+                                style: greyTextStyle,
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
-          );
+                  ],
+                ),
+              ),
+            );
+          },
+        );
   }
 }

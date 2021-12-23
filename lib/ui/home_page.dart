@@ -108,13 +108,11 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     width: 24,
                   ),
-                  Expanded(
-                    child: CityCard(
-                      City(
-                        id: 1,
-                        name: 'Jakarta',
-                        imageUrl: 'assets/images/city1.jpg',
-                      ),
+                  CityCard(
+                    City(
+                      id: 1,
+                      name: 'Jakarta',
+                      imageUrl: 'assets/images/city1.jpg',
                     ),
                   ),
                   SizedBox(

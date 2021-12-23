@@ -308,14 +308,12 @@ class _DetailPageState extends State<DetailPage> {
                                                     const EdgeInsets.symmetric(
                                                   horizontal: 20,
                                                 ),
-                                                child: Expanded(
-                                                  child: FieldDateTime(
-                                                    ctrlText: _date,
-                                                    hint: "Select Date",
-                                                    disableBackDate: true,
-                                                    borderOutline: false,
-                                                    onSaved: (val) {},
-                                                  ),
+                                                child: FieldDateTime(
+                                                  ctrlText: _date,
+                                                  hint: "Select Date",
+                                                  disableBackDate: true,
+                                                  borderOutline: false,
+                                                  onSaved: (val) {},
                                                 ),
                                               ),
                                               const SizedBox(height: 10),
@@ -404,15 +402,13 @@ class _DetailPageState extends State<DetailPage> {
                                                         BorderRadius.circular(
                                                             50),
                                                   ),
-                                                  child: Expanded(
-                                                    child: Center(
-                                                      child: Text(
-                                                        "Make Appointment",
-                                                        style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Make Appointment",
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w500,
                                                       ),
                                                     ),
                                                   ),
